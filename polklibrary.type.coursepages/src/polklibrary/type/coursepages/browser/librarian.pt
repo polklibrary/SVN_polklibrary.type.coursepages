@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone"
+	  lang="en">
+<body>
+
+	<metal:block fill-slot="style_slot">
+        <style>
+        </style>
+	</metal:block>
+    
+    <metal:content-title fill-slot="content-title" >
+        <h1 class="documentFirstHeading">${context/Title}</h1>
+    </metal:content-title>
+        
+	<metal:content-description fill-slot="content-description">
+        <div class="documentDescription description">${context/Description}</div>
+    </metal:content-description>
+
+	<metal:content fill-slot="content-core">
+        
+        <div id="page-view" class="column" tal:define="staff view/get_member">
+            <div class="col-70">
+                <tal:block replace="structure staff/education/output"></tal:block>
+                <tal:block replace="structure staff/professional_background/output"></tal:block>
+            </div>
+            
+            <div class="col-30">
+                <img tal:condition="staff/image" src="${staff/absolute_url}/@@download/image/${staff/image/filename};" alt="Staff Photo" />
+                <img tal:condition="not: staff/image" src="++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
+            </div>
+            
+            <div class="col-100">
+                <h3>Course Pages</h3>
+                <ul>
+                    <li tal:repeat="page view/get_course_pages">
+                        <a href="${page/getURL}">${page/Title}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        
+	</metal:content>
+
+</body>
+</html>

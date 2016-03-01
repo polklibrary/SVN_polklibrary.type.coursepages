@@ -1,0 +1,50 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="polklibrary.type.coursepages">
+
+  <includeDependencies package="." />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package=".browser" />
+  <include package=".models" />
+
+
+  <genericsetup:registerProfile
+      name="default"
+      title="polklibrary.type.coursepages"
+      directory="profiles/default"
+      description="Installs the polklibrary.type.coursepages add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="polklibrary.type.coursepages-postInstall"
+      title="polklibrary.type.coursepages post_install import step"
+      description="Post install import step from polklibrary.type.coursepages"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="polklibrary.type.coursepages"
+      directory="profiles/uninstall"
+      description="Uninstalls the polklibrary.type.coursepages add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="polklibrary.type.coursepages-uninstall"
+      title="polklibrary.type.coursepages uninstall import step"
+      description="Import step run during ininstalling polklibrary.type.coursepages"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="polklibrary.type.coursepages-hiddenprofiles" />
+
+</configure>
