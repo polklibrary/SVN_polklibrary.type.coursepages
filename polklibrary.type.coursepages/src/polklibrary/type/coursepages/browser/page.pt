@@ -22,11 +22,9 @@
 	<metal:content fill-slot="content-core">
         
         <div id="page-view" class="column">
-        
-            <div class="col-100">
-                <tal:block replace="structure context/body/output"></tal:block>
+            <div class="col-100" tal:content="structure context/body/output|nothing">
+            
             </div>
-        
         </div>
         
         
