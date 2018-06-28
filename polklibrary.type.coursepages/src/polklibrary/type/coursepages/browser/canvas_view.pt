@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Polk Library - ${view/course_page/Title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++production/++unique++/default.css" data-bundle="production" />
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++theme++barceloneta/less/barceloneta-compiled.css" data-bundle="diazo" />
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++static/++unique++/plone-legacy-compiled.css" data-bundle="plone-legacy" />
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++theme++uwosh/css/production.css" data-bundle="diazo" />
+<link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/library/++theme++uwosh/css/production.css" data-bundle="diazo" />
+
+
+<style>
+    body {
+        background-color: #fff;
+        padding: 5px 10px;
+    }
+    .canvas-instructor-area {
+        border: 1px dashed red;
+        background-color: #ffd2d2;
+        margin-bottom: 20px;
+    }
+    
+    .canvas-instructor-note {
+        color: red;
+        font-style: italic;
+    }
+    
+    .canvas-resource-separater {
+        border-top: 1px solid #bbb;
+        display: block;
+        margin-top: 40px;
+        padding-bottom: 40px;
+    }
+    h1 {
+        padding-bottom: 10px;
+    }
+    
+    .canvas-librarian {
+        border: 1px solid #bbb;
+        line-height: 1.5;
+        text-align: center;
+    }
+    .canvas-librarian h2 {
+    }
+    .canvas-librarian .librarian-portrait {
+        padding: 5px 0;
+        width: 80%;
+    }
+    
+    .canvas-librarian .librarian-email a, .canvas-librarian .librarian-phone a {
+        font-size: 13px;
+    }
+    
+</style>
+
+</head>
+<body>
+
+    <h1 class="documentFirstHeading">Library Resources</h1>
+    <div class="documentDescription description"></div>
+    <div id="page-view" class="column">
+    
+        <tal:block condition="view/requires_setup">
+            <div class="col-100">
+                <div class="column-inner canvas-instructor-area">
+                    <div class="canvas-instructor-note">Note: This red area is not visible to students</div>
+                    
+                    <div>
+                        Would you like library resources relevant to your course curated by a librarian?  
+                        Please fill out the form below and a librarian will contact you shortly. Otherwise the
+                        library will send resources below based off of this courses subject.
+                    </div>
+                    
+                    <br />
+                    
+                    <form method="post" action="${context/absolute_url}">
+                        
+                        <label>
+                        Is this an online course?
+                            <select name="form.type">
+                                <option name="standard">No</option>
+                                <option name="online">Yes</option>
+                            </select>
+                        </label>
+                        <br />
+                        <label>
+                        Any notes or comments to the librarian?
+                            <textarea name="form.note"></textarea>
+                        </label>
+                        <br />
+                        <input type="hidden" name="form.canvas.id" value="${view/canvas_course_id}" />
+                        <input type="hidden" name="form.canvas.title" value="${view/canvas_course_title}" />
+                        <input type="hidden" name="form.canvas.email" value="${view/canvas_person_email}" />
+                        <input type="hidden" name="form.canvas.fullname" value="${view/canvas_person_name}" />
+                        <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
+                    </form>
+                </div>
+            </div>
+        </tal:block>
+        
+        <div class="col-80">
+            <tal:block condition="view/course_page">
+                <h1>${view/course_page/Title} - Course Resources</h1>
+                <div  tal:content="structure view/course_page/body/output|nothing"></div>
+            </tal:block>
+            
+            <tal:block condition="view/subject">
+                <div class="canvas-resource-separater"></div>
+                <h1>${view/subject/Title} - Subject Resources</h1>
+                <div tal:content="structure view/subject/body/output|nothing"></div>
+            </tal:block>
+        </div>
+
+        
+        <div class="col-20" tal:condition="view/librarian">
+            <div class="column-inner-10 canvas-librarian" tal:condition="view/librarian">
+                <h2>${view/librarian/Title}</h2>
+                <img class="librarian-portrait" tal:condition="view/librarian/image" src="${view/librarian/absolute_url}/@@download/image/${view/librarian/image/filename};" alt="Staff Photo" />
+                <img class="librarian-portrait" tal:condition="not: view/librarian/image" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
+                <div class="librarian-email">Email: <a href="mailto:${view/librarian/email}">${view/librarian/email}</a></div>
+                <div class="librarian-phone">Call:  <a href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
+                <div class="librarian-office">Office:  ${view/librarian/location}</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</body>
+</html>

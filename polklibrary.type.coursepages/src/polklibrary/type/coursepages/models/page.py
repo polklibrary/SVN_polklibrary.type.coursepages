@@ -22,7 +22,7 @@ class IPage(model.Schema):
         )
         
     resources = schema.List(
-            title=u"Add to D2L (provide one ID on each line)",
+            title=u"LMS Course ID (provide one ID on each line)",
             required=False,
             value_type=schema.TextLine()
         )
