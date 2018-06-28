@@ -18,7 +18,11 @@
         padding: 5px 10px;
     }
     
-    #content-core { border-top: 0px none; }
+    #content-core { 
+        border-top: 0px none;
+        padding: 0;
+        margin: 0;
+    }
     
     .canvas-instructor-area {
         border: 1px dashed red;
@@ -37,8 +41,23 @@
         margin-top: 40px;
         padding-bottom: 40px;
     }
-    h1 {
-        padding-bottom: 10px;
+    h1.section-heading {
+        padding: 10px 0;
+        font-size: 1.8em;
+    }
+    
+    #content-core h2.section-heading {
+        background-color: #991a37;
+        padding: 5px 10px;
+        color: white;
+    }
+    
+    .content-area {
+        padding: 10px 10px 20px 10px;
+    }
+    
+    .column-padder {
+        padding: 0 10px 0 0;
     }
     
     .canvas-librarian {
@@ -68,7 +87,7 @@
 </head>
 <body>
 
-    <h1 class="documentFirstHeading">Library Resources</h1>
+    <h1 class="section-heading">Library Resources</h1>
     <div id="content-core" class="column">
     
         <tal:block condition="view/requires_setup">
@@ -112,16 +131,15 @@
             </div>
         </tal:block>
         
-        <div class="col-80">
+        <div class="col-80 column-padder">
             <tal:block condition="view/course_page">
-                <h1>${view/course_page/Title} - Course Resources</h1>
-                <div  tal:content="structure view/course_page/body/output|nothing"></div>
+                <h2 class="section-heading">Course Specific Resources</h2>
+                <div class="content-area" tal:content="structure view/course_page/body/output|nothing"></div>
             </tal:block>
             
             <tal:block condition="view/subject">
-                <div class="canvas-resource-separater"></div>
-                <h1>${view/subject/Title} - Subject Resources</h1>
-                <div tal:content="structure view/subject/body/output|nothing"></div>
+                <h2 class="section-heading">General Subject Resources</h2>
+                <div class="content-area" tal:content="structure view/subject/body/output|nothing"></div>
             </tal:block>
         </div>
 
@@ -136,6 +154,8 @@
                 <div class="librarian-office">Office:  ${view/librarian/location}</div>
             </div>
         </div>
+        
+        <div class="clear"></div>
     </div>
     
     
