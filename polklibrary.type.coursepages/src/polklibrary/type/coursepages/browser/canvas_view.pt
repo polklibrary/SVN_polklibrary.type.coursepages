@@ -9,11 +9,17 @@
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++static/++unique++/plone-legacy-compiled.css" />
 <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/production.css" />
 
+<script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/polk.js"></script>
+
 <style>
     body {
         background-color: #fff;
         padding: 5px 10px;
     }
+    
+    #content-core { border-top: 0px none; }
+    
     .canvas-instructor-area {
         border: 1px dashed red;
         background-color: #ffd2d2;
@@ -57,8 +63,7 @@
 <body>
 
     <h1 class="documentFirstHeading">Library Resources</h1>
-    <div class="documentDescription description"></div>
-    <div id="page-view" class="column">
+    <div id="content-core" class="column">
     
         <tal:block condition="view/requires_setup">
             <div class="col-100">
