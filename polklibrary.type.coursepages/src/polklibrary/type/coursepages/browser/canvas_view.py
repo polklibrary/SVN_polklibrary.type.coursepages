@@ -2,6 +2,7 @@ from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from polklibrary.type.coursepages.utility import MailMe
 
 class CanvasView(BrowserView):
 
@@ -28,15 +29,19 @@ class CanvasView(BrowserView):
             print custom_canvas_domain
             print canvas_firstname
             print canvas_lastname
+            self.custom_canvas_domain = custom_canvas_domain
             self.canvas_course_id = canvas_course_id
             self.canvas_course_title = canvas_course_title
             self.canvas_person_email = canvas_email
             self.canvas_person_name = canvas_firstname + " " + canvas_lastname
+            self.canvas_role = canvas_role
+            self.canvas_firstname = canvas_firstname
+            self.canvas_lastname = canvas_lastname
             self.is_canvas_editor = canvas_role in self.editor_roles
             
             # Handle Workflows
             if self.is_canvas_editor and 'form.submit' in self.request.form:
-                pass
+                self.workflow()
             
             # Setup Course Page
             course_page_brain =  self.get_course_page(canvas_course_id)
@@ -52,7 +57,7 @@ class CanvasView(BrowserView):
                 self.course_page = course_page_brain.getObject()
                 self.librarian = self.get_librarian(self.course_page)
             
-            self.requires_setup = True #self.is_canvas_editor and not self.course_page
+            self.requires_setup = self.is_canvas_editor and not self.course_page
             return self.template()
     
         return "None"
@@ -60,8 +65,9 @@ class CanvasView(BrowserView):
      
     def get_course_page(self, canvas_id):
         brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=canvas_id)
-        if brains:
-            return brains[0]
+        for brain in brains:
+            if str(canvas_id) in brain.resources:
+                return brains[0]
         return None
 
     def get_librarian(self, course_page):
@@ -87,7 +93,20 @@ class CanvasView(BrowserView):
         return None
     
     def workflow(self):
-        pass
+        to_email = ['hietpasd@uwosh.edu']
+        from_email = self.canvas_person_email
+        subject = "Course Page Request: " + self.canvas_course_title + " - " + self.canvas_course_id
+        body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
+        body += "Canvas Course ID: " + self.canvas_course_id + "\n"
+        body += "Canvas Course Title: " + self.canvas_course_title+ "\n"
+        body += "Online Course: \n" + self.request.form.get('form.is_online','')
+        body += "Instructor Comment: \n" + self.request.form.get('form.note','')
+        
+        
+        print "MAILING: " + subject + " " + from_email + " " + str(to_email) + " " + body
+        MailMe(subject, from_email, to_email, body)
+        
+        
         
     @property
     def portal(self):

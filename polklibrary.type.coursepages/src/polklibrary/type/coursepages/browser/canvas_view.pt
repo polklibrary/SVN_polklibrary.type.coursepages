@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Polk Library - ${view/course_page/Title}</title>
+<title>Polk Library Resources</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++production/++unique++/default.css" />
@@ -59,6 +59,12 @@
     
 </style>
 
+<script>
+    $(document).ready(function(){
+        $('a').attr('target','_blank');
+    });
+</script>
+
 </head>
 <body>
 
@@ -72,19 +78,19 @@
                     
                     <div>
                         Would you like library resources relevant to your course curated by a librarian?  
-                        Please fill out the form below and a librarian will contact you shortly. Otherwise the
-                        library will send resources below based off of this courses subject.
+                        Please fill out the form below and a librarian will contact you shortly. Otherwise
+                        Polk Library will send resources below based off of this courses subject.
                     </div>
                     
                     <br />
                     
-                    <form method="post" action="${context/absolute_url}">
+                    <form method="post" action="${context/absolute_url}/getLibraryCanvasResources">
                         
                         <label>
-                        Is this an online course?
-                            <select name="form.type">
-                                <option name="standard">No</option>
-                                <option name="online">Yes</option>
+                        Is this an 100% online course?
+                            <select name="form.is_online">
+                                <option name="No">No</option>
+                                <option name="Yes">Yes</option>
                             </select>
                         </label>
                         <br />
@@ -93,10 +99,13 @@
                             <textarea name="form.note"></textarea>
                         </label>
                         <br />
-                        <input type="hidden" name="form.canvas.id" value="${view/canvas_course_id}" />
-                        <input type="hidden" name="form.canvas.title" value="${view/canvas_course_title}" />
-                        <input type="hidden" name="form.canvas.email" value="${view/canvas_person_email}" />
-                        <input type="hidden" name="form.canvas.fullname" value="${view/canvas_person_name}" />
+                        <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
+                        <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
+                        <input type="hidden" name="roles" value="${view/canvas_role}" />
+                        <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
+                        <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
+                        <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
+                        <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
                         <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
                     </form>
                 </div>
