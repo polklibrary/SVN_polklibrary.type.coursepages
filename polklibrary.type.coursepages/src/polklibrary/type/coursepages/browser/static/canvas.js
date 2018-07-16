@@ -91,11 +91,11 @@ var DB = {
         if (typeof SubjectDisciplines !== 'undefined') {
             
             for (var i in db.disciplines){
-                var discipline = db.disciplines[i]
+                var discipline = db.disciplines[i];
                 var key = $('#subject-legend li[data-discipline="' + discipline + '"]').eq(0);
                 if (key) {
                     var img = $(key).find('img').attr({'title': discipline, 'alt': discipline}).clone();
-                    $('#subject-view').find(e).after(img);
+                    $('#content-core').find(e).after(img);
                 }
                 
             }
