@@ -11,7 +11,9 @@
 
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
-
+        <script>
+            var SubjectDisciplines = ${view/get_disciplines};
+        </script>
 
 <style>
     body {
@@ -52,6 +54,9 @@
         padding: 5px 10px;
         color: white;
     }
+    
+    #content-core a { border-bottom: none; }
+    #content-core td, #content-core tr, #content-core table, #content-core th  { border: none; }
     
     .content-area {
         padding: 10px 10px 20px 10px;

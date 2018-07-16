@@ -4,6 +4,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from polklibrary.type.coursepages.utility import MailMe
 
+import json
+
+
 class CanvasView(BrowserView):
 
     template = ViewPageTemplateFile("canvas_view.pt")
@@ -91,6 +94,13 @@ class CanvasView(BrowserView):
         if brains:
             return brains[0]
         return None
+    
+    def get_disciplines(self):
+        result = {}
+        if self.subject:
+            for i in self.subject.disciplines:
+                result[i] = i
+        return json.dumps(result)
     
     def workflow(self):
         to_email = ['hietpasd@uwosh.edu']
