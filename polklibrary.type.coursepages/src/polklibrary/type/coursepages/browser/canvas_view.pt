@@ -12,6 +12,14 @@
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/polk.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON('https://www.uwosh.edu/library/ws/getResearchDatabase', function(data){
+                DB.dynamic_construct(data);
+        });
+    });
+</script>
+
 <style>
     body {
         background-color: #fff;
