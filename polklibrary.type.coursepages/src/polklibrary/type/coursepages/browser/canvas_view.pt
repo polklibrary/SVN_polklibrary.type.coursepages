@@ -10,15 +10,8 @@
 <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/production.css" />
 
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/polk.js"></script>
+<script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $.getJSON('https://www.uwosh.edu/library/ws/getResearchDatabase', function(data){
-                DB.dynamic_construct(data);
-        });
-    });
-</script>
 
 <style>
     body {
@@ -85,12 +78,6 @@
     }
     
 </style>
-
-<script>
-    $(document).ready(function(){
-        $('a').attr('target','_blank');
-    });
-</script>
 
 </head>
 <body>
