@@ -133,8 +133,8 @@ var Accordians = {
 
 
 $(document).ready(function(){
-    Canvas.construct();
     DB.construct();
+    Canvas.construct();
     Primo.construct();
     Accordians.construct();
 });

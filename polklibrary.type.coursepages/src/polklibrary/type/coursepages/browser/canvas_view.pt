@@ -82,82 +82,87 @@
         font-size: 13px;
     }
     
+    #content-core li[data-discipline="0"] {
+        display: none;
+    }
+}
+    
+    
 </style>
 
 </head>
 <body>
 
-    <h1 class="section-heading">Library Resources</h1>
-    <div id="content-core" class="column">
-    
-        <tal:block condition="view/requires_setup">
-            <div class="col-100">
-                <div class="column-inner canvas-instructor-area">
-                    <div class="canvas-instructor-note">Note: This red area is not visible to students</div>
-                    
-                    <div>
-                        Would you like library resources relevant to your course curated by a librarian?  
-                        Please fill out the form below and a librarian will contact you shortly. Otherwise
-                        Polk Library will send resources below based off of this courses subject.
-                    </div>
-                    
-                    <br />
-                    
-                    <form method="post" action="${context/absolute_url}/getLibraryCanvasResources">
-                        
-                        <label>
-                        Is this an 100% online course?
-                            <select name="form.is_online">
-                                <option name="No">No</option>
-                                <option name="Yes">Yes</option>
-                            </select>
-                        </label>
-                        <br />
-                        <label>
-                        Any notes or comments to the librarian?
-                            <textarea name="form.note"></textarea>
-                        </label>
-                        <br />
-                        <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
-                        <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
-                        <input type="hidden" name="roles" value="${view/canvas_role}" />
-                        <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
-                        <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
-                        <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
-                        <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
-                        <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
-                    </form>
-                </div>
-            </div>
-        </tal:block>
+        <h1 class="section-heading">Library Resources</h1>
+        <div id="content-core" class="column">
         
-        <div class="col-80 column-padder">
-            <tal:block condition="view/course_page">
-                <h2 class="section-heading">Course Specific Resources</h2>
-                <div class="content-area" tal:content="structure view/course_page/body/output|nothing"></div>
+            <tal:block condition="view/requires_setup">
+                <div class="col-100">
+                    <div class="column-inner canvas-instructor-area">
+                        <div class="canvas-instructor-note">Note: This red area is not visible to students</div>
+                        
+                        <div>
+                            Would you like library resources relevant to your course curated by a librarian?  
+                            Please fill out the form below and a librarian will contact you shortly. Otherwise
+                            Polk Library will send resources below based off of this courses subject.
+                        </div>
+                        
+                        <br />
+                        
+                        <form method="post" action="${context/absolute_url}/getLibraryCanvasResources">
+                            
+                            <label>
+                            Is this an 100% online course?
+                                <select name="form.is_online">
+                                    <option name="No">No</option>
+                                    <option name="Yes">Yes</option>
+                                </select>
+                            </label>
+                            <br />
+                            <label>
+                            Any notes or comments to the librarian?
+                                <textarea name="form.note"></textarea>
+                            </label>
+                            <br />
+                            <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
+                            <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
+                            <input type="hidden" name="roles" value="${view/canvas_role}" />
+                            <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
+                            <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
+                            <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
+                            <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
+                            <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
+                        </form>
+                    </div>
+                </div>
             </tal:block>
             
-            <tal:block condition="view/subject">
-                <h2 class="section-heading">General Subject Resources</h2>
-                <div class="content-area" tal:content="structure view/subject/body/output|nothing"></div>
-            </tal:block>
-        </div>
-
-        
-        <div class="col-20" tal:condition="view/librarian">
-            <div class="column-inner-10 canvas-librarian" tal:condition="view/librarian">
-                <h2>${view/librarian/Title}</h2>
-                <img class="librarian-portrait" tal:condition="view/librarian/image" src="${view/librarian/absolute_url}/@@download/image/${view/librarian/image/filename};" alt="Staff Photo" />
-                <img class="librarian-portrait" tal:condition="not: view/librarian/image" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
-                <div class="librarian-email">Email: <a href="mailto:${view/librarian/email}">${view/librarian/email}</a></div>
-                <div class="librarian-phone">Call:  <a href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
-                <div class="librarian-office">Office:  ${view/librarian/location}</div>
+            <div class="col-80 column-padder">
+                <tal:block condition="view/course_page">
+                    <h2 class="section-heading">Course Specific Resources</h2>
+                    <div class="content-area" tal:content="structure view/course_page/body/output|nothing"></div>
+                </tal:block>
+                
+                <tal:block condition="view/subject">
+                    <h2 class="section-heading">General Subject Resources</h2>
+                    <div class="content-area" tal:content="structure view/subject/body/output|nothing"></div>
+                </tal:block>
             </div>
+
+            
+            <div class="col-20" tal:condition="view/librarian">
+                <div class="column-inner-10 canvas-librarian" tal:condition="view/librarian">
+                    <h2>${view/librarian/Title}</h2>
+                    <img class="librarian-portrait" tal:condition="view/librarian/image" src="${view/librarian/absolute_url}/@@download/image/${view/librarian/image/filename};" alt="Staff Photo" />
+                    <img class="librarian-portrait" tal:condition="not: view/librarian/image" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
+                    <div class="librarian-email">Email: <a href="mailto:${view/librarian/email}">${view/librarian/email}</a></div>
+                    <div class="librarian-phone">Call:  <a href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
+                    <div class="librarian-office">Office:  ${view/librarian/location}</div>
+                </div>
+            </div>
+            
+            <div class="clear"></div>
         </div>
-        
-        <div class="clear"></div>
-    </div>
-    
     
     
 </body>
