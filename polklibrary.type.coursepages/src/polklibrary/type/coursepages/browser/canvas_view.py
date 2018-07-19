@@ -90,7 +90,7 @@ class CanvasView(BrowserView):
 
         if any(x in course_title for x in ['polk','art']):  # FOR TESTING
             subject_id = 'fine-arts' 
-        if any(x in course_title for x in ['bio', 'chem', 'computer','test']):
+        if any(x in course_title for x in ['bio', 'chem', 'computer']):
             subject_id = 'stem'
 
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
@@ -130,18 +130,18 @@ class CanvasView(BrowserView):
                     obj = brains[0].getObject()
                     obj.resources.append(str(self.canvas_course_id))
                     obj.reindexObject()
-                    print "OBJECT FOUND - ADDING INDEX"
+                    #print "OBJECT FOUND - ADDING INDEX"
                     self.message = "A previously create course page was found for this course and the assigned librarian will be contacting you shortly."
                     
                 else: # if doesn't exist, add it
-                    # obj = api.content.create(
-                        # librarian, 
-                        # type='polklibrary.type.coursepages.models.page', 
-                        # id=plone_id,
-                        # title=self.canvas_course_title, 
-                        # resources=str(self.canvas_course_id)
-                    # )
-                    print "OBJECT NOT FOUND - CREATING"
+                    obj = api.content.create(
+                        librarian, 
+                        type='polklibrary.type.coursepages.models.page', 
+                        id=plone_id,
+                        title=self.canvas_course_title, 
+                        resources=str(self.canvas_course_id)
+                    )
+                    #print "OBJECT NOT FOUND - CREATING"
                     self.message = "A course page has been created and your assigned librarian will be contacting you shortly."
                     
                 all_fail_email = False #success
@@ -155,8 +155,8 @@ class CanvasView(BrowserView):
                 body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
                 body += "Here is the course page: " + obj.absolute_url()
                 
-                print "MAILING: " + subject + " " + from_email + " " + str(to_email) + " " + body
-                #MailMe(subject, from_email, to_email, body)
+                #print "MAILING: " + subject + " " + from_email + " " + str(to_email) + " " + body
+                MailMe(subject, from_email, to_email, body)
                     
                 
             except Exception as e:
@@ -166,7 +166,7 @@ class CanvasView(BrowserView):
         if all_fail_email:
             self.message = "You do not have a librarian assigned to you.  We are assigning you a librarian best suited to this subject.  They will be contacting you shortly."
             
-            print "NO AUTO ASSIGN FOUND - EMAILING"
+            #print "NO AUTO ASSIGN FOUND - EMAILING"
             to_email = ['hietpasd@uwosh.edu']
             from_email = self.canvas_person_email
             subject = "Course Page Request: " + self.canvas_course_title
@@ -176,8 +176,8 @@ class CanvasView(BrowserView):
             body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
             body += "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian."
         
-            print "MAILING: " + subject + " " + from_email + " " + str(to_email) + " " + body
-            #MailMe(subject, from_email, to_email, body)
+            #print "MAILING: " + subject + " " + from_email + " " + str(to_email) + " " + body
+            MailMe(subject, from_email, to_email, body)
             
         
         

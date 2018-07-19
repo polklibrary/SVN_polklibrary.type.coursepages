@@ -216,7 +216,7 @@
                 </div>
             </tal:block>
             
-            <div class="col-80 column-padder">
+            <div class="col-75 column-padder">
                 <tal:block condition="view/course_page">
                     <h2 class="section-heading">Course Specific Resources</h2>
                     <div class="content-area" tal:content="structure view/course_page/body/output|nothing"></div>
@@ -244,9 +244,13 @@
                     <div class="col-25">
                         <a class="library-box" href="http://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
                     </div>
-                        
+                    
+                    <div class="clear"></div>
+                    <br/>
+                    <br/>
                 </div>
                 
+                <div class="clear"></div>
             </div>
 
             
