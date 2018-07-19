@@ -33,4 +33,15 @@ class ILibrarian(model.Schema):
             source=librarian_vocab,
         )
         
+    chat = schema.TextLine(
+            title=u"LibraryH3lp ID",
+            required=False,
+        )
+        
+    resources = schema.List(
+            title=u"List of faculty emails to be auto-assigned to this librarian (one email per line)",
+            required=False,
+            value_type=schema.TextLine()
+        )
+        
         

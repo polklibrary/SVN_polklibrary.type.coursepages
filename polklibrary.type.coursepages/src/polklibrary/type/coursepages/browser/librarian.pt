@@ -22,15 +22,17 @@
 	<metal:content fill-slot="content-core">
         
         <div id="page-view" class="column" tal:define="staff view/get_member">
-            <div class="col-70">
+            <div class="col-100">
                 <tal:block replace="structure staff/education/output"></tal:block>
                 <tal:block replace="structure staff/professional_background/output"></tal:block>
             </div>
             
-            <div class="col-30">
+            <!-- 
+            <div class="col-30"> 
                 <img tal:condition="staff/image" src="${staff/absolute_url}/@@download/image/${staff/image/filename};" alt="Staff Photo" />
                 <img tal:condition="not: staff/image" src="++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
             </div>
+            -->
             
             <div class="col-100">
                 <h3>Course Pages</h3>

@@ -10,10 +10,11 @@
 <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/production.css" />
 
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/chat.js"></script>
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
-        <script>
-            var SubjectDisciplines = ${view/get_disciplines};
-        </script>
+<script>
+    var SubjectDisciplines = ${view/get_disciplines};
+</script>
 
 <style>
     body {
@@ -57,7 +58,7 @@
     
     #content-core a { border-bottom: none; }
     #content-core td, #content-core tr, #content-core table, #content-core th  { border: none; }
-    
+    #content-core td { padding: 0px 10px; }
     .content-area {
         padding: 10px 10px 20px 10px;
     }
@@ -71,21 +72,72 @@
         line-height: 1.5;
         text-align: center;
     }
-    .canvas-librarian h2 {
-    }
-    .canvas-librarian .librarian-portrait {
-        padding: 5px 0;
+    .canvas-librarian img {
+        padding: 10px 0;
         width: 80%;
     }
+    .canvas-librarian h2 {
+    }
     
-    .canvas-librarian .librarian-email a, .canvas-librarian .librarian-phone a {
+    .canvas-librarian div {
+        text-align: left;
+    }
+    .canvas-librarian div strong {
+        display: inline-block;
+        text-align: right;
+        width: 45px;
+    }
+    .canvas-librarian a  {
         font-size: 13px;
     }
+    .canvas-librarian span  {
+        font-size: 13px;
+        color: #666;
+    }
+    .canvas-librarian .librarian-chat {
+        padding: 10px;
+        text-align: center;
+    }
+    .canvas-librarian .librarian-chat img {
+        display: block;
+        text-align: center;
+        width: 100px;
+        margin: 0 auto;
+    }
+    .canvas-librarian .librarian-chat img.no-chat {
+        filter: grayscale(100%);
+        opacity: 0.2;
+    }
+    
     
     #content-core li[data-discipline="0"] {
         display: none;
     }
-}
+    
+    #content-core .canvas-instructor-area textarea{
+        width: 90%;
+    }
+    
+    #content-core .canvas-message {
+        background-color: #ddffdd;
+        border: 1px solid green;
+        margin: 10px;
+    }
+    #content-core .library-box {
+        display: block;
+        background-color: #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 0 auto;
+        color: #333;
+        text-align: center;
+        height: 150px;
+        width: 150px;
+    }
+    #content-core .library-box:hover {
+        background-color: #bbb;
+        text-decoration: none !important;
+    }
     
     
 </style>
@@ -96,43 +148,70 @@
         <h1 class="section-heading">Library Resources</h1>
         <div id="content-core" class="column">
         
+            <tal:block condition="view/message">
+                <div class="col-100">
+                    <div class="column-inner canvas-message">
+                        ${view/message}
+                    </div>
+                </div>
+                
+            </tal:block>
+            
             <tal:block condition="view/requires_setup">
                 <div class="col-100">
                     <div class="column-inner canvas-instructor-area">
-                        <div class="canvas-instructor-note">Note: This red area is not visible to students</div>
-                        
-                        <div>
-                            Would you like library resources relevant to your course curated by a librarian?  
-                            Please fill out the form below and a librarian will contact you shortly. Otherwise
-                            Polk Library will send resources below based off of this courses subject.
+                    
+                        <div class="col-50">
+                            <div class="canvas-instructor-note">Note: This red area is not visible to students</div>
+                            
+                            <div>
+                                Would you like library resources relevant to your course curated by a librarian?  
+                                Please fill out the form below and a librarian will contact you shortly. Otherwise
+                                Polk Library will only provide resources below based off of this courses subject.
+                            </div>
+                            
+                            <br />
+                            
+                            <form method="post" action="${context/absolute_url}/getLibraryCanvasResources">
+                                <label for="canvas-form-note">
+                                    Any notes or comments to the librarian?
+                                </label>
+                                <textarea id="canvas-form-note" name="form.note"></textarea>
+                                <br />
+                                <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
+                                <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
+                                <input type="hidden" name="roles" value="${view/canvas_role}" />
+                                <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
+                                <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
+                                <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
+                                <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
+                                <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
+                            </form>
                         </div>
                         
-                        <br />
+                        <div class="col-50">
+                            <div>
+                                <strong>What do I get from enhanced library resources?</strong>
+                            </div>
+                            <div>
+                                You will be assigned a specific librarian.  This librarian will work with you to provide library resources specific to your course.
+                                <ul>
+                                    <li>Library resources (databases, articles, journals, etc...) specific to your course.</li>
+                                    <li>1-on-1 direct research help</li>
+                                    <li>Citation help</li>
+                                    <li>Lessons</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>What are general subject resources?</strong>
+                            </div>
+                            <div>
+                                General subject resources will provide a general "catch all" of resources for your courses subject.  These resources will be included regardless of you requesting enhanced library resources.
+                            </div>
+                        </div>
                         
-                        <form method="post" action="${context/absolute_url}/getLibraryCanvasResources">
-                            
-                            <label>
-                            Is this an 100% online course?
-                                <select name="form.is_online">
-                                    <option name="No">No</option>
-                                    <option name="Yes">Yes</option>
-                                </select>
-                            </label>
-                            <br />
-                            <label>
-                            Any notes or comments to the librarian?
-                                <textarea name="form.note"></textarea>
-                            </label>
-                            <br />
-                            <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
-                            <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
-                            <input type="hidden" name="roles" value="${view/canvas_role}" />
-                            <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
-                            <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
-                            <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
-                            <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
-                            <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
-                        </form>
+                        
+                        <div class="clear"></div>
                     </div>
                 </div>
             </tal:block>
@@ -147,17 +226,78 @@
                     <h2 class="section-heading">General Subject Resources</h2>
                     <div class="content-area" tal:content="structure view/subject/body/output|nothing"></div>
                 </tal:block>
+                
+                <div class="column">
+                
+                    <div class="col-25">
+                        <a class="library-box" href="https://www.uwosh.edu/library">Polk Library</a>
+                    </div>
+                        
+                    <div class="col-25">
+                        <a class="library-box" href="https://www.uwosh.edu/library">Search@UW</a>
+                    </div>
+                        
+                    <div class="col-25">
+                        <a class="library-box" href="https://www.uwosh.edu/library/help">Help</a>
+                    </div>
+                        
+                    <div class="col-25">
+                        <a class="library-box" href="http://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
+                    </div>
+                        
+                </div>
+                
             </div>
 
             
             <div class="col-20" tal:condition="view/librarian">
-                <div class="column-inner-10 canvas-librarian" tal:condition="view/librarian">
+                <div class="column-inner-10 canvas-librarian">
                     <h2>${view/librarian/Title}</h2>
                     <img class="librarian-portrait" tal:condition="view/librarian/image" src="${view/librarian/absolute_url}/@@download/image/${view/librarian/image/filename};" alt="Staff Photo" />
                     <img class="librarian-portrait" tal:condition="not: view/librarian/image" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
-                    <div class="librarian-email">Email: <a href="mailto:${view/librarian/email}">${view/librarian/email}</a></div>
-                    <div class="librarian-phone">Call:  <a href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
-                    <div class="librarian-office">Office:  ${view/librarian/location}</div>
+                    <div><strong>Email:</strong> <a href="mailto:${view/librarian/email}">${view/librarian/email}</a></div>
+                    <div><strong>Phone:</strong> <a href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
+                    <div><strong>Office:</strong> <span>${view/librarian/location}</span></div>
+                    
+                    <div class="librarian-chat">
+                        <span class="pat-chat" data-display="inline">
+                            <a href="#" data-chat="${view/course_librarian/chat}" data-skin="3760">
+                                <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
+                                ${view/librarian/Title} is available
+                            </a> 
+                            <a href="#" data-chat="polk-library-ref" data-skin="3760">
+                                <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
+                                ${view/librarian/Title} is not available.  Talk to another librarian?
+                            </a> 
+                            <a href="#">
+                                <img class="no-chat" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
+                                No librarian available.
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-20" tal:condition="not:view/librarian">
+                <div class="column-inner-10 canvas-librarian">
+                    <h2>Reference Librarians</h2>
+                    <img class="librarian-portrait" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
+                    <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.edu">infodesk@uwosh.edu</a></div>
+                    <div><strong>Phone:</strong> <a href="tel:9208211542">9208211542</a></div>
+                    
+                    <div class="librarian-chat">
+                        <span class="pat-chat" data-display="inline">
+                            <a href="#" data-chat="polk-library-ref" data-skin="3760">
+                                <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
+                                Talk to a librarian?
+                            </a> 
+                            <a href="#">
+                                <img class="no-chat" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
+                                No librarian available.
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
             
