@@ -88,7 +88,7 @@ class CanvasView(BrowserView):
         course_title = course_title.lower()
         subject_id = '^$#$&$%9JKSLDI' # random to produce miss
 
-        if any(x in course_title for x in ['polk','art']):  # FOR TESTING
+        if any(x in course_title for x in ['polk','art','test']):  # FOR TESTING
             subject_id = 'fine-arts' 
         if any(x in course_title for x in ['bio', 'chem', 'computer']):
             subject_id = 'stem'
