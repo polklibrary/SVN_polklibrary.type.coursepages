@@ -108,7 +108,7 @@ class CanvasView(BrowserView):
     
     
     def workflow(self):
-        print "WORKFLOW STARTED -------------------"
+        #print "WORKFLOW STARTED -------------------"
         
         librarian = None
         all_fail_email = True
@@ -140,7 +140,7 @@ class CanvasView(BrowserView):
                         type='polklibrary.type.coursepages.models.page', 
                         id=plone_id,
                         title=self.canvas_course_title, 
-                        resources=str(self.canvas_course_id)
+                        resources=[str(self.canvas_course_id)]
                     )
                     #print "OBJECT NOT FOUND - CREATING"
                     self.message = "A course page has been created and your assigned librarian will be contacting you shortly."
