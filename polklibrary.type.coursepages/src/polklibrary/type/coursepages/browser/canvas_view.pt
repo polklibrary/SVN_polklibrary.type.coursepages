@@ -219,12 +219,12 @@
             <div class="col-75 column-padder">
                 <tal:block condition="view/course_page">
                     <h2 class="section-heading">Course Specific Resources</h2>
-                    <div class="content-area" tal:content="structure view/course_page/body/output|nothing"></div>
+                    <div class="content-area content-course" tal:content="structure view/course_page/body/output|nothing"></div>
                 </tal:block>
                 
                 <tal:block condition="view/subject">
                     <h2 class="section-heading">General Subject Resources</h2>
-                    <div class="content-area" tal:content="structure view/subject/body/output|nothing"></div>
+                    <div class="content-area content-subject" tal:content="structure view/subject/body/output|nothing"></div>
                 </tal:block>
                 
                 <div class="column">

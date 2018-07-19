@@ -11,7 +11,7 @@ var Canvas = {
     
     retrieve_db_information : function(){
         $.getJSON(Canvas.POLK_WS_ROOT + 'getResearchDatabase', function(data){
-                DB.dynamic_construct(data);
+            DB.dynamic_construct(data);
         });
     }
 
@@ -95,7 +95,7 @@ var DB = {
                 var key = $('#subject-legend li[data-discipline="' + discipline + '"]').eq(0);
                 if (key) {
                     var img = $(key).find('img').attr({'title': discipline, 'alt': discipline}).clone();
-                    $('#content-core').find(e).after(img);
+                    $('#content-core .content-subject').find(e).after(img);
                 }
                 
             }

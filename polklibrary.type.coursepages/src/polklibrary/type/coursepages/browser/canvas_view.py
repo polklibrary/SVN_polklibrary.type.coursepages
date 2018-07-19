@@ -114,9 +114,10 @@ class CanvasView(BrowserView):
         all_fail_email = True
         brains = api.content.find(portal_type='polklibrary.type.coursepages.models.librarian')
         for brain in brains:
-            if self.canvas_person_email in brain.resources:
-                librarian = brain.getObject()
-                break
+            if brain.resources:
+                if self.canvas_person_email in brain.resources:
+                    librarian = brain.getObject()
+                    break
                 
         plone_id = idnormalizer.normalize(self.canvas_course_title)
         
