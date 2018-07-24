@@ -154,7 +154,7 @@ class CanvasView(BrowserView):
                 all_fail_email = False #success
                     
                 to_email = [staff.email]
-                from_email = self.canvas_person_email
+                from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
                 body += "Canvas Course ID: " + self.canvas_course_id + "\n"
@@ -175,7 +175,7 @@ class CanvasView(BrowserView):
             
             #print "NO AUTO ASSIGN FOUND - EMAILING"
             to_email = ['hietpasd@uwosh.edu']
-            from_email = self.canvas_person_email
+            from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
             body += "Canvas Course ID: " + self.canvas_course_id + "\n"
