@@ -129,7 +129,7 @@ class CanvasView(BrowserView):
                 brains = api.content.find(librarian, portal_type='polklibrary.type.coursepages.models.page', id=plone_id)
                 if brains: # if exists, append new canvas id to list
                     obj = brains[0].getObject()
-                    obj.resources.append(str(self.canvas_course_id))
+                    obj.resources.append(self.canvas_course_id)
                     obj.reindexObject()
                     #print "OBJECT FOUND - ADDING INDEX"
                     self.message = "A previously create course page was found for this course and the assigned librarian will be contacting you shortly."
@@ -140,8 +140,14 @@ class CanvasView(BrowserView):
                         type='polklibrary.type.coursepages.models.page', 
                         id=plone_id,
                         title=self.canvas_course_title, 
-                        resources=[str(self.canvas_course_id)]
                     )
+                    obj.resources=[]
+                    obj.resources.append(self.canvas_course_id)
+                    with api.env.adopt_roles(roles=['Manager']):
+                        api.content.transition(obj=obj, transition='publish')
+                    
+                    obj.reindexObject()
+                    
                     #print "OBJECT NOT FOUND - CREATING"
                     self.message = "A course page has been created and your assigned librarian will be contacting you shortly."
                     

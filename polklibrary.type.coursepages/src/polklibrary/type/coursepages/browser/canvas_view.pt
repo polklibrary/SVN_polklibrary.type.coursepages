@@ -53,6 +53,7 @@
     
     #content-core h2.section-heading {
         background-color: #991a37;
+        border-radius: 3px;
         padding: 5px 10px;
         color: white;
     }
@@ -70,6 +71,7 @@
     
     .canvas-librarian {
         border: 1px solid #bbb;
+        border-radius: 3px;
         line-height: 1.5;
         text-align: center;
     }
@@ -124,19 +126,17 @@
         border: 1px solid green;
         margin: 10px;
     }
-    #content-core .library-box {
-        display: block;
-        background-color: #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 0 auto;
+    #content-core .canvas-link a {
+        background-color: #eee;
+        border-radius: 3px;
         color: #333;
+        display: block;
+        margin: 10px auto;
+        padding: 5px;
         text-align: center;
-        height: 150px;
-        width: 150px;
     }
-    #content-core .library-box:hover {
-        background-color: #bbb;
+    #content-core .canvas-link a:hover {
+        background-color: #ddd;
         text-decoration: none !important;
     }
     
@@ -155,7 +155,6 @@
                         ${view/message}
                     </div>
                 </div>
-                
             </tal:block>
             
             <tal:block condition="view/requires_setup">
@@ -227,36 +226,15 @@
                     <h2 class="section-heading">General Subject Resources</h2>
                     <div class="content-area content-subject" tal:content="structure view/subject/body/output|nothing"></div>
                 </tal:block>
-                
-                <div class="column">
-                
-                    <div class="col-25">
-                        <a class="library-box" href="https://www.uwosh.edu/library">Polk Library</a>
-                    </div>
-                        
-                    <div class="col-25">
-                        <a class="library-box" href="https://www.uwosh.edu/library">Search@UW</a>
-                    </div>
-                        
-                    <div class="col-25">
-                        <a class="library-box" href="https://www.uwosh.edu/library/help">Help</a>
-                    </div>
-                        
-                    <div class="col-25">
-                        <a class="library-box" href="http://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
-                    </div>
-                    
-                    <div class="clear"></div>
-                    <br/>
-                    <br/>
-                </div>
-                
+
                 <div class="clear"></div>
             </div>
 
             
-            <div class="col-20" tal:condition="view/librarian">
-                <div class="column-inner-10 canvas-librarian">
+            <div class="col-20" >
+            
+                <!-- Librarian Found -->
+                <div class="column-inner-10 canvas-librarian" tal:condition="view/librarian">
                     <h2>${view/librarian/Title}</h2>
                     <img class="librarian-portrait" tal:condition="view/librarian/image" src="${view/librarian/absolute_url}/@@download/image/${view/librarian/image/filename};" alt="Staff Photo" />
                     <img class="librarian-portrait" tal:condition="not: view/librarian/image" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
@@ -281,11 +259,9 @@
                         </span>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="col-20" tal:condition="not:view/librarian">
-                <div class="column-inner-10 canvas-librarian">
+                
+                <!-- No Librarian Found -->
+                <div class="column-inner-10 canvas-librarian" tal:condition="not: view/librarian">
                     <h2>Reference Librarians</h2>
                     <img class="librarian-portrait" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
                     <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.edu">infodesk@uwosh.edu</a></div>
@@ -304,7 +280,20 @@
                         </span>
                     </div>
                 </div>
+                
+                <div class="canvas-link">
+                    <a href="https://www.uwosh.edu/library">Polk Library</a>
+                    <a href="https://uwi-primoalma-prod.hosted.exlibrisgroup.com/primo-explore/search?vid=OSH&lang=en_US&sortby=rank">Search@UW</a>
+                    <a href="https://www.uwosh.edu/library/accounts">Library Accounts</a>
+                    <a href="https://uwosh.campus.eab.com/student/appointments/new?type=tutoring">Research Assistance</a>
+                    <a href="https://www.uwosh.edu/library/help/tutorials">Tutorials</a>
+                    <a href="https://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
+                </div>
+                
+                <div class="clear"></div>
             </div>
+            
+            
             
             <div class="clear"></div>
         </div>

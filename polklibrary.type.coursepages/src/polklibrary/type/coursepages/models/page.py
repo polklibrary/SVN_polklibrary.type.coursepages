@@ -18,7 +18,7 @@ class IPage(model.Schema):
             title=u"Course Page",
             default_mime_type='text/structured',
             required=False,
-            default=u"",
+            default=u"<p>Please provide course specific content.</p>",
         )
         
     resources = schema.List(
