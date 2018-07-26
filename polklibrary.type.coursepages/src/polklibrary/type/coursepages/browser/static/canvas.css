@@ -1,0 +1,121 @@
+body {
+    background-color: #fff;
+    padding: 5px 10px;
+}
+
+#content-core { 
+    border-top: 0px none;
+    padding: 0;
+    margin: 0;
+}
+
+.canvas-instructor-area {
+    border: 1px dashed red;
+    background-color: #ffd2d2;
+    margin-bottom: 20px;
+}
+
+.canvas-instructor-note {
+    color: red;
+    font-style: italic;
+}
+
+.canvas-resource-separater {
+    border-top: 1px solid #bbb;
+    display: block;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+h1.section-heading {
+    padding: 10px 0;
+    font-size: 1.8em;
+}
+
+#content-core h2.section-heading {
+    background-color: #991a37;
+    border-radius: 3px;
+    padding: 5px 10px;
+    color: white;
+}
+
+#content-core a { border-bottom: none; }
+#content-core td, #content-core tr, #content-core table, #content-core th  { border: none; }
+#content-core td { padding: 0px 10px; }
+.content-area {
+    padding: 10px 10px 20px 10px;
+}
+
+.column-padder {
+    padding: 0 10px 0 0;
+}
+
+.canvas-librarian {
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    line-height: 1.5;
+    text-align: center;
+}
+.canvas-librarian img {
+    padding: 10px 0;
+    width: 80%;
+}
+.canvas-librarian h2 {
+}
+
+.canvas-librarian div {
+    text-align: left;
+}
+.canvas-librarian div strong {
+    display: inline-block;
+    text-align: right;
+    width: 45px;
+}
+.canvas-librarian a  {
+    font-size: 13px;
+}
+.canvas-librarian span  {
+    font-size: 13px;
+    color: #666;
+}
+.canvas-librarian .librarian-chat {
+    padding: 10px;
+    text-align: center;
+}
+.canvas-librarian .librarian-chat img {
+    display: block;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+.canvas-librarian .librarian-chat img.no-chat {
+    filter: grayscale(100%);
+    opacity: 0.2;
+}
+
+
+#content-core li[data-discipline="0"] {
+    display: none;
+}
+
+#content-core .canvas-instructor-area textarea{
+    width: 90%;
+}
+
+#content-core .canvas-message {
+    background-color: #ddffdd;
+    border: 1px solid green;
+    margin: 10px;
+}
+#content-core .canvas-link a {
+    background-color: #ddd;
+    border-radius: 3px;
+    color: #333;
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    text-align: center;
+}
+#content-core .canvas-link a:hover {
+    background-color: #ccc;
+    text-decoration: none !important;
+}
