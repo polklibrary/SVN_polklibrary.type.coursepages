@@ -95,6 +95,7 @@ class CanvasView(BrowserView):
                 result[i] = i
         return json.dumps(result)
         
+        
     def workflow(self):        
 
         librarian_count = 0
@@ -109,7 +110,24 @@ class CanvasView(BrowserView):
                 
         plone_id = idnormalizer.normalize(self.canvas_course_title)
         
-        if librarian and librarian_count == 1:
+        # Distance education workflow
+        if self.request.form.get('form.online','') == 'yes':
+            all_fail_email = False #success
+            
+            to_email = ['hietpasd@uwosh.edu',self.canvas_person_email] #['distancelibrary@uwosh.edu',self.canvas_person_email]
+            from_email = [self.canvas_person_email]
+            subject = "Course Page Request: " + self.canvas_course_title
+            body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
+            body += "Canvas Course ID: " + self.canvas_course_id + "\n"
+            body += "Canvas Course Title: " + self.canvas_course_title + "\n"
+            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
+            body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
+            body += "Here is the course page: " + obj.absolute_url()
+            
+            MailMe(subject, from_email, to_email, body)
+        
+        # Standard workflow
+        elif librarian and librarian_count == 1:
             try:
                 staff = api.content.get(path=librarian.location)
                 obj = None
@@ -139,7 +157,7 @@ class CanvasView(BrowserView):
                     
                 all_fail_email = False #success
                     
-                to_email = ['hietpasd@uwosh.edu'] #[staff.email]
+                to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] #[staff.email, self.canvas_person_email]
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
@@ -153,13 +171,13 @@ class CanvasView(BrowserView):
                     
                 
             except Exception as e:
-                print "ERROR: " + str(e)
+                print "ERROR: " + str(e) # logs error
 
-               
+       # Catch all workflow
         if all_fail_email:
             self.message = "You do not have a librarian assigned to you.  We are assigning you a librarian best suited to this subject.  They will be contacting you shortly."
             
-            to_email = ['hietpasd@uwosh.edu']
+            to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] # [libraryinstruction@uwosh.edu', self.canvas_person_email]
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
@@ -171,6 +189,7 @@ class CanvasView(BrowserView):
         
             MailMe(subject, from_email, to_email, body)
 
+            
     @property
     def portal(self):
         return api.portal.get()
