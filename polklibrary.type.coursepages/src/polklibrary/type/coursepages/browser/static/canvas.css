@@ -3,6 +3,10 @@ body {
     padding: 5px 10px;
 }
 
+#content-core a {
+    color: #198BFF;
+}
+
 #content-core { 
     border-top: 0px none;
     padding: 0;
@@ -131,4 +135,8 @@ h1.section-heading {
     width: 95%;
 }
 
+#content-core input[type="submit"] {
+    color: #fff;
+    background-color: #1F7AB2;
+}
 

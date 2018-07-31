@@ -51,13 +51,15 @@
                                 Any notes or comments to the librarian?
                             </label>
                             <textarea id="canvas-form-note" name="form.note"></textarea>
+                            <br />
                             <label for="canvas-form-online">
-                                Any notes or comments to the librarian?
+                                Is this an online course?
                             </label>
                             <select id="canvas-form-online" name="form.online">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>
+                            <br />
                             <br />
                             <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
                             <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
@@ -66,7 +68,7 @@
                             <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
                             <input type="hidden" name="lis_person_contact_email_primary" value="${view/canvas_person_email}" />
                             <input type="hidden" name="custom_canvas_api_domain" value="${view/custom_canvas_domain}" />
-                            <input class="context" type="submit" name="form.submit" value="Request Enhanced Library Resources" />
+                            <input type="submit" name="form.submit" value="Request Enhanced Library Resources" />
                         </form>
                     </div>
                     <div class="col-5"><br /></div>
@@ -121,7 +123,7 @@
                         <input type="hidden" value="OSH" name="institution">
                         <input type="hidden" value="OSH" name="vid">
                         <input id="primo-query-translated" type="hidden" name="query">
-                        <input class="context" type="submit" value="SEARCH">
+                        <input type="submit" value="SEARCH">
                     </div>
                     <div class="clear"></div>
                 </form> 
@@ -188,9 +190,8 @@
             
             <div class="canvas-link">
                 <a href="https://www.uwosh.edu/library">Polk Library</a>
-                <a href="https://uwi-primoalma-prod.hosted.exlibrisgroup.com/primo-explore/search?vid=OSH&lang=en_US&sortby=rank">Search@UW</a>
                 <a href="https://www.uwosh.edu/library/accounts">Library Accounts</a>
-                <a href="https://uwosh.campus.eab.com/student/appointments/new?type=tutoring">Research Assistance</a>
+                <a href="https://www.uwosh.edu/library/help">Research Help</a>
                 <a href="https://www.uwosh.edu/library/help/tutorials">Tutorials</a>
                 <a href="https://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
             </div>
