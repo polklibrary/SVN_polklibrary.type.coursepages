@@ -6,7 +6,15 @@ var Canvas = {
     construct : function() {
         $('a').attr('target','_blank'); // make links open new tabs
         this.retrieve_db_information();
-        
+        this.telephone_format();
+    },
+    
+    telephone_format : function() {
+        $('.pat-telephone').each(function(){
+            var text = $.trim($(this).text());
+            text = text.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+            $(this).text(text);
+        });
     },
     
     retrieve_db_information : function(){

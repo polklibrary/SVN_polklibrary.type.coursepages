@@ -104,9 +104,7 @@ class CanvasView(BrowserView):
             for i in self.subject.disciplines:
                 result[i] = i
         return json.dumps(result)
-    
-    
-    
+        
     def workflow(self):
         #print "WORKFLOW STARTED -------------------"
         
