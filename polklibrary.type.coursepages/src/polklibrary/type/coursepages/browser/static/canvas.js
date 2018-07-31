@@ -29,7 +29,7 @@ var Canvas = {
 var Primo = {
     
     construct : function() {
-        $('#polk-find form').submit(function(){
+        $('.content-search form').submit(function(){
             var v = $.trim($('#primo-query').val().replace(/[,&]/g,''));
             $('#primo-query-translated').val( 'any,contains,' + v );
         });

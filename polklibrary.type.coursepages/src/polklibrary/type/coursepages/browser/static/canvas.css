@@ -119,3 +119,16 @@ h1.section-heading {
     background-color: #ccc;
     text-decoration: none !important;
 }
+
+
+#content-core .content-search input[type="text"] {
+    padding: 7px 5px;  
+    width: 95%;  
+}
+
+#content-core .content-search select {
+    padding: 7px 5px;    
+    width: 95%;
+}
+
+

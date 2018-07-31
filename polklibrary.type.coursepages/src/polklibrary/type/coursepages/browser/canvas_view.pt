@@ -13,7 +13,7 @@
 <script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/chat.js"></script>
 <script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/mobile.js"></script>
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
-<script>
+<script type="text/javascript">
     var SubjectDisciplines = ${view/get_disciplines};
 </script>
 
@@ -51,6 +51,13 @@
                                 Any notes or comments to the librarian?
                             </label>
                             <textarea id="canvas-form-note" name="form.note"></textarea>
+                            <label for="canvas-form-online">
+                                Any notes or comments to the librarian?
+                            </label>
+                            <select id="canvas-form-online" name="form.online">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
                             <br />
                             <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
                             <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
@@ -91,6 +98,35 @@
                 <div class="content-area content-course" tal:content="structure view/course_page/body/output|nothing"></div>
             </tal:block>
             
+            <h2 class="section-heading">Search@UW</h2>
+            <div class="content-area content-search">
+               <form class="column" action="https://uwi-primoalma-prod.hosted.exlibrisgroup.com/primo-explore/search" method="get">
+                    <div class="col-50">
+                        <label for="primo-query" class="hide">Search@UW:</label>
+                        <input id="primo-query" type="text" placeholder="Find articles, books, dvds and more with Search@UW" value=""> 
+                    </div>
+                    <div class="col-25">
+                        <label for="search-scopes" class="hide">Search Scope:</label>
+                        <select id="search-scopes" name="search_scope">
+                            <option value="OSH_ALL">Everything</option>
+                            <option value="OSH_PCI">- Articles</option>
+                            <option value="OSH_ALMA">- Books &amp; Media (UW Oshkosh)</option>
+                            <option value="UW_ALMA">- Books &amp; Media (UW System)</option>
+                            <option value="UW_DIGCOLL">- UW Digital Collections</option>
+                            <option value="OSH_Archive">- Historical Society Archives &amp; Oshkosh Archives</option>
+                            <option value="OSH_CR">Course Reserves (UW Oshkosh)</option>
+                        </select>
+                    </div>
+                    <div class="col-10">
+                        <input type="hidden" value="OSH" name="institution">
+                        <input type="hidden" value="OSH" name="vid">
+                        <input id="primo-query-translated" type="hidden" name="query">
+                        <input class="context" type="submit" value="SEARCH">
+                    </div>
+                    <div class="clear"></div>
+                </form> 
+            </div>
+        
             <tal:block condition="view/subject">
                 <h2 class="section-heading">General Subject Resources</h2>
                 <div class="content-area content-subject" tal:content="structure view/subject/body/output|nothing"></div>
