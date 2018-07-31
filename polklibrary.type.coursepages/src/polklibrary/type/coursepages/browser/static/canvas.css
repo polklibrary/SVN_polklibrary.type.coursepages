@@ -13,6 +13,8 @@ body {
     margin: 0;
 }
 
+.hspacer { height: 15px; }
+
 .canvas-instructor-area {
     border: 1px dashed red;
     background-color: #ffd2d2;
