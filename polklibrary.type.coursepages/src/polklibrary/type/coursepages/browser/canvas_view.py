@@ -117,11 +117,11 @@ class CanvasView(BrowserView):
             to_email = ['hietpasd@uwosh.edu',self.canvas_person_email] #['distancelibrary@uwosh.edu',self.canvas_person_email]
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
-            body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
-            body += "Canvas Course ID: " + self.canvas_course_id + "\n"
-            body += "Canvas Course Title: " + self.canvas_course_title + "\n"
-            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
-            body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
+            body = "Canvas Course Instructor " + self.canvas_person_name + "<br/>"
+            body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+            body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
+            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
+            body += "Faculty Note: " + self.request.form.get('form.note','')+ "<br/><br/>"
             body += "Here is the course page: " + obj.absolute_url()
             
             MailMe(subject, from_email, to_email, body)
@@ -160,11 +160,11 @@ class CanvasView(BrowserView):
                 to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] #[staff.email, self.canvas_person_email]
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
-                body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
-                body += "Canvas Course ID: " + self.canvas_course_id + "\n"
-                body += "Canvas Course Title: " + self.canvas_course_title + "\n"
-                body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
-                body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
+                body = "Canvas Course Instructor " + self.canvas_person_name + "<br/>"
+                body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+                body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
+                body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
+                body += "Faculty Note: " + self.request.form.get('form.note','')+ "<br/><br/>"
                 body += "Here is the course page: " + obj.absolute_url()
                 
                 MailMe(subject, from_email, to_email, body)
@@ -180,11 +180,11 @@ class CanvasView(BrowserView):
             to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] # [libraryinstruction@uwosh.edu', self.canvas_person_email]
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
-            body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
-            body += "Canvas Course ID: " + self.canvas_course_id + "\n"
-            body += "Canvas Course Title: " + self.canvas_course_title + "\n"
-            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
-            body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
+            body = "Canvas Course Instructor " + self.canvas_person_name + "<br/>"
+            body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+            body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
+            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
+            body += "Faculty Note: " + self.request.form.get('form.note','')+ "<br/><br/>"
             body += "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian."
         
             MailMe(subject, from_email, to_email, body)
