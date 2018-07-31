@@ -96,6 +96,7 @@ class CanvasView(BrowserView):
         return json.dumps(result)
         
     def workflow(self):        
+
         librarian_count = 0
         librarian = None
         all_fail_email = True
@@ -138,12 +139,13 @@ class CanvasView(BrowserView):
                     
                 all_fail_email = False #success
                     
-                to_email = [staff.email]
+                to_email = ['hietpasd@uwosh.edu'] #[staff.email]
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
                 body += "Canvas Course ID: " + self.canvas_course_id + "\n"
                 body += "Canvas Course Title: " + self.canvas_course_title + "\n"
+                body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
                 body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
                 body += "Here is the course page: " + obj.absolute_url()
                 
@@ -163,6 +165,7 @@ class CanvasView(BrowserView):
             body = "Canvas Course Instructor " + self.canvas_person_name + "\n"
             body += "Canvas Course ID: " + self.canvas_course_id + "\n"
             body += "Canvas Course Title: " + self.canvas_course_title + "\n"
+            body += "Canvas Online Course: " + self.request.form.get('form.online','') + "\n"
             body += "Faculty Note: " + self.request.form.get('form.note','')+ "\n\n"
             body += "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian."
         
