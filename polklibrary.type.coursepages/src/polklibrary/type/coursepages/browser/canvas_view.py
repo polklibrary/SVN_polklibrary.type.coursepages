@@ -24,7 +24,7 @@ class CanvasView(BrowserView):
         canvas_email = self.request.form.get('lis_person_contact_email_primary', '')
         custom_canvas_domain = self.request.form.get('custom_canvas_api_domain', '')
         
-        if 'uwosh.instructure.com' in custom_canvas_domain and canvas_course_id != 0:
+        if ('uwosh.instructure.com' in custom_canvas_domain or 'uwosh.test.instructure.com' in custom_canvas_domain or 'uwosh.beta.instructure.com' in custom_canvas_domain) and canvas_course_id != 0:
             
             self.custom_canvas_domain = custom_canvas_domain
             self.canvas_course_id = canvas_course_id
@@ -59,7 +59,7 @@ class CanvasView(BrowserView):
             
             return self.template()
     
-        return ""
+        return "Access denied.  Access to this LTI is only accessable from a uwosh instructure domain.  To get an exception added please contact librarytechnology@uwosh.edu."
 
      
     def get_course_page(self, canvas_id):
