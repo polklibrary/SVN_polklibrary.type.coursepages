@@ -103,7 +103,7 @@
             
             <h2 class="section-heading">Search@UW</h2>
             <div class="content-area content-search">
-               <form class="column" action="https://uwi-primoalma-prod.hosted.exlibrisgroup.com/primo-explore/search" method="get">
+               <form class="column" action="https://uwi-primoalma-prod.hosted.exlibrisgroup.com/primo-explore/search" method="get" target="_blank">
                     <div class="col-50">
                         <label for="primo-query" class="hide">Search@UW:</label>
                         <input id="primo-query" type="text" placeholder="Find articles, books, dvds and more with Search@UW" value=""> 
@@ -194,7 +194,7 @@
             <div class="canvas-link">
                 <a href="https://www.uwosh.edu/library">Polk Library</a>
                 <a href="https://www.uwosh.edu/library/accounts">Library Accounts</a>
-                <a href="https://www.uwosh.edu/library/help">Research Help</a>
+                <a href="https://www.uwosh.edu/library/services/forms/research-assistance">Research Assistance</a>
                 <a href="https://www.uwosh.edu/library/help/tutorials">Tutorials</a>
                 <a href="https://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
             </div>

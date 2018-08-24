@@ -11,6 +11,30 @@ class CanvasView(BrowserView):
 
     template = ViewPageTemplateFile("canvas_view.pt")
     
+    # SUBJECT RULE MAP
+    BUSINESS = ['business',' economics','economy','marketing','finance','financial','accounting','information systems','human resource',
+        'audit','tax','taxation','fraud','cost management','operations management','organizational behavior','independent study','risk management',
+        'managing','strategic management','consulting','banking','markets','trade','monetary','industrial organization','time series analysis','econometric',
+        'real estate','investment','security analysis','endowment','actuarial science','insurance','digital future','networking hardware',
+        'virtualization technologies','systems analysis','data communications','agile','c#','e-commerce','technology innovation','software design',
+        'mobile application','planning systems','engineering project management','change management','entrepreneurship','global management','employee',
+        'occupational safety','compensation management','benefits','project execution','sales','retail management','consumer behavior','sales management',
+        'product management','purchasing behavior','supply chain','manufacturing','procurement','quality management'
+    ]
+    COMMUNICATION = ['communications']
+    ENGLISH = ['english','foreign language']
+    EDUCATION = ['education']
+    FINE_ARTS = ['polk','art','test']
+    GOV_LAW = ['government','criminal']
+    HISTORY = ['history']
+    INTERDISCIPLINARY = ['liberal studies']
+    NURSING = ['nursing','medicine','medical','health','human behavior','physiology','evidence-based practice','ethical care','pharm','pharmacy','drugs','childbearing','obstetrics','clinical','children and adolescents']
+    PSYCHOLOGY = ['pyschology']
+    SOCIAL_SCIENCES = ['political science','politics']
+    STEM = ['biology','chemistry']
+    SUSTAINABILITY = ['sustainable','sustainability','energy and facilities management']
+    
+    
     NON_EDITOR_ROLES = ['student', 'interpreter pre-semester', 'observers', 'interpreter semester']
     
     def __call__(self):
@@ -100,8 +124,7 @@ class CanvasView(BrowserView):
         return json.dumps(result)
         
         
-    def workflow(self):        
-
+    def workflow(self):   
         librarian_count = 0
         librarian = None
         all_fail_email = True
@@ -119,7 +142,7 @@ class CanvasView(BrowserView):
         if self.request.form.get('form.online','').lower() == 'yes':
             all_fail_email = False #success
             
-            to_email = ['hietpasd@uwosh.edu',self.canvas_person_email] #['distancelibrary@uwosh.edu',self.canvas_person_email]
+            to_email = ['distancelibrary@uwosh.edu',self.canvas_person_email,'hietpasd@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This is an online course, please contact the instructor for information." + str(librarian_count) + "<br/><br/>"
@@ -162,7 +185,7 @@ class CanvasView(BrowserView):
                     
                 all_fail_email = False #success
                     
-                to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] #[staff.email, self.canvas_person_email]
+                to_email = [staff.email, self.canvas_person_email, 'hietpasd@uwosh.edu']
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Here is the course page: " + obj.absolute_url() + "<br/><br/>"
@@ -183,7 +206,7 @@ class CanvasView(BrowserView):
         if all_fail_email:
             self.message = "You do not have a librarian assigned to you.  We are assigning you a librarian best suited to this subject.  They will be contacting you shortly."
             
-            to_email = ['hietpasd@uwosh.edu', self.canvas_person_email] # [libraryinstruction@uwosh.edu', self.canvas_person_email]
+            to_email = ['libraryinstruction@uwosh.edu', self.canvas_person_email, 'hietpasd@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian. <br/><br/>"
