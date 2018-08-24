@@ -83,7 +83,7 @@ class CanvasView(BrowserView):
             
             return self.template()
     
-        return "Access denied.  Access to this LTI is only accessable from a uwosh instructure domain.  To get an exception added please contact librarytechnology@uwosh.edu."
+        return "Access denied.  Access to this LTI is only accessible from a uwosh instructure domain.  To get an exception added please contact librarytechnology@uwosh.edu."
 
      
     def get_course_page(self, canvas_id):
