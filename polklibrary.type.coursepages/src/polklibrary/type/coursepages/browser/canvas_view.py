@@ -104,31 +104,31 @@ class CanvasView(BrowserView):
         course_title = course_title.lower()
         subject_id = '^$#$&$%9JKSLDI' # random to produce miss
 
-        if any(x in course_title for x in BUSINESS):
+        if any(x in course_title for x in self.BUSINESS):
             subject_id = 'business-economics'
-        elif any(x in course_title for x in COMMUNICATION):
+        elif any(x in course_title for x in self.COMMUNICATION):
             subject_id = 'communication-media'
-        elif any(x in course_title for x in EDUCATION):
+        elif any(x in course_title for x in self.EDUCATION):
             subject_id = 'education'
-        elif any(x in course_title for x in ENGLISH):
+        elif any(x in course_title for x in self.ENGLISH):
             subject_id = 'english-foreign-languages'
-        elif any(x in course_title for x in FINE_ARTS): 
+        elif any(x in course_title for x in self.FINE_ARTS): 
             subject_id = 'fine-arts' 
-        elif any(x in course_title for x in GOV_LAW):
+        elif any(x in course_title for x in self.GOV_LAW):
             subject_id = 'government-law-human-services'
-        elif any(x in course_title for x in HISTORY):
+        elif any(x in course_title for x in self.HISTORY):
             subject_id = 'history-philosophy-religion'
-        elif any(x in course_title for x in INTERDISCIPLINARY):
+        elif any(x in course_title for x in self.INTERDISCIPLINARY):
             subject_id = 'interdisciplinary'
-        elif any(x in course_title for x in NURSING):
+        elif any(x in course_title for x in self.NURSING):
             subject_id = 'nursing-allied-health'
-        elif any(x in course_title for x in PSYCHOLOGY):
+        elif any(x in course_title for x in self.PSYCHOLOGY):
             subject_id = 'psychology-counseling'
-        elif any(x in course_title for x in STEM):
+        elif any(x in course_title for x in self.STEM):
             subject_id = 'stem'
-        elif any(x in course_title for x in SOCIAL_SCIENCES):
+        elif any(x in course_title for x in self.SOCIAL_SCIENCES):
             subject_id = 'social-sciences'
-        elif any(x in course_title for x in SUSTAINABILITY):
+        elif any(x in course_title for x in self.SUSTAINABILITY):
             subject_id = 'sustainability'
 
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
