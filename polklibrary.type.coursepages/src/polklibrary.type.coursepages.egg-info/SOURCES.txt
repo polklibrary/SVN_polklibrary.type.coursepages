@@ -22,7 +22,10 @@ src/polklibrary/type/coursepages/configure.zcml
 src/polklibrary/type/coursepages/interfaces.py
 src/polklibrary/type/coursepages/setuphandlers.py
 src/polklibrary/type/coursepages/testing.py
+src/polklibrary/type/coursepages/utility.py
 src/polklibrary/type/coursepages/browser/__init__.py
+src/polklibrary/type/coursepages/browser/canvas_view.pt
+src/polklibrary/type/coursepages/browser/canvas_view.py
 src/polklibrary/type/coursepages/browser/configure.zcml
 src/polklibrary/type/coursepages/browser/librarian.pt
 src/polklibrary/type/coursepages/browser/librarian.py
@@ -30,6 +33,9 @@ src/polklibrary/type/coursepages/browser/page.pt
 src/polklibrary/type/coursepages/browser/page.py
 src/polklibrary/type/coursepages/browser/overrides/.gitkeep
 src/polklibrary/type/coursepages/browser/static/.gitkeep
+src/polklibrary/type/coursepages/browser/static/canvas.css
+src/polklibrary/type/coursepages/browser/static/canvas.js
+src/polklibrary/type/coursepages/browser/static/chat.png
 src/polklibrary/type/coursepages/locales/polklibrary.type.coursepages.pot
 src/polklibrary/type/coursepages/locales/update.sh
 src/polklibrary/type/coursepages/models/__init__.py
