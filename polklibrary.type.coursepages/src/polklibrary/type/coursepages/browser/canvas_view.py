@@ -35,7 +35,7 @@ class CanvasView(BrowserView):
     SUSTAINABILITY = ['sustainable','sustainability','energy and facilities management']
     
     
-    NON_EDITOR_ROLES = ['student', 'interpreter pre-semester', 'observers', 'interpreter semester', 'learner']
+    NON_EDITOR_ROLES = ['student', 'interpreter pre-semester', 'observers', 'interpreter semester', 'learner', 'students']
     
     def __call__(self):
         self.message = None
