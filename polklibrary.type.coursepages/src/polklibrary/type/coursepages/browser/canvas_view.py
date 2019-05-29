@@ -151,6 +151,14 @@ class CanvasView(BrowserView):
     
         return "Access denied.  Access to this LTI is only accessible from a uwosh instructure domain.  To get an exception added please contact librarytechnology@uwosh.edu."
 
+    # custom logger causes plone not start...
+    def customlog(self, message):
+        try:
+            with open('var/coursepage.log', 'a+') as filehandle:  
+                filehandle.write(message + '\n')
+        except Exception as e:
+            logger.info('ERROR: Customlog append fail -- ' + str(e))
+            logger.exception(e)
      
     def get_course_page(self, canvas_id):
         brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=canvas_id)
@@ -200,10 +208,10 @@ class CanvasView(BrowserView):
         
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
         if brains:
-            logger.info("FOUND: " + str(course_title) + brains[0].Title) # FOUND
+            self.customlog("FOUND: " + str(course_title) + brains[0].Title) # FOUND
             return brains[0]
             
-        logger.info("MISS: " + str(course_title)) # MISS
+        self.customlog("MISS: Title=" + str(course_title) + '; Id=' + self.canvas_course_id + '; Email=' + self.canvas_person_email) # MISS
         return None
     
     def get_disciplines(self):
