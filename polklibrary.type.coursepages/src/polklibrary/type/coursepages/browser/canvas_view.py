@@ -5,34 +5,101 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from polklibrary.type.coursepages.utility import MailMe
 import json, logging
 
+def setup_logger(name, log_file, level=logging.INFO):
+    handler = logging.FileHandler(log_file)        
+    handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+    return logger
+
 logger = logging.getLogger("Plone")
+cp_logger = setup_logger('CoursePages', 'var/coursepages.log')
+
 
 class CanvasView(BrowserView):
 
     template = ViewPageTemplateFile("canvas_view.pt")
     
     # SUBJECT RULE MAP
+    # NOTE: Some targets are missing ending letters to prevent conflicts.  Example:  data communicatio != communication
     BUSINESS = ['business',' economics','economy','marketing','finance','financial','accounting','information systems','human resource',
         'audit','tax','taxation','fraud','cost management','operations management','organizational behavior','independent study','risk management',
         'managing','strategic management','consulting','banking','markets','trade','monetary','industrial organization','time series analysis','econometric',
         'real estate','investment','security analysis','endowment','actuarial science','insurance','digital future','networking hardware',
-        'virtualization technologies','systems analysis','data communications','agile','c#','e-commerce','technology innovation','software design',
+        'virtualization technologies','systems analysis','data communicatio','agile','c#','e-commerce','technology innovation','software design',
         'mobile application','planning systems','engineering project management','change management','entrepreneurship','global management','employee',
         'occupational safety','compensation management','benefits','project execution','sales','retail management','consumer behavior','sales management',
         'product management','purchasing behavior','supply chain','manufacturing','procurement','quality management'
     ]
-    COMMUNICATION = ['communications']
-    ENGLISH = ['english','foreign language']
-    EDUCATION = ['education']
-    FINE_ARTS = ['polk','art','test']
-    GOV_LAW = ['government','criminal']
-    HISTORY = ['history']
-    INTERDISCIPLINARY = ['liberal studies']
-    NURSING = ['nurs','nursing','medicine','medical','health','human behavior','physiology','evidence-based practice','ethical care','pharm','pharmacy','drugs','childbearing','obstetrics','clinical','children and adolescents']
-    PSYCHOLOGY = ['pyschology']
-    SOCIAL_SCIENCES = ['political science','politics']
-    STEM = ['biology','chemistry']
-    SUSTAINABILITY = ['sustainable','sustainability','energy and facilities management']
+    COMMUNICATION = ['communication','public speaking','speech communication','interpersonal speech','speech','rhetoric','public advocacy','interviewing',
+        'oral interpretation','effective listening','argumentation','debate','speaking','prison exchange','gender and discourse','persuasion','participation',
+        'training and development','public address','criticism'
+    ]
+    ENGLISH = ['english','foreign language','composition','literature','writing','perspectives','shakespeare','speaking globally','writers','novel','romanticism',
+        'linguistics','story','wbis','literary','connect','poetry','mythology','chaucer','drama','methods of research','fiction','grammer'
+    ]
+    EDUCATION = ['education','school','psychology','disabilities','special ed','teaching','adolescent','k-12','k12','instruction','lesson plans','ed leadership',
+        'spec ed','pupil','curriculum','prof development','professional development','higher ed','decision making','learning','trad ed','community engagement',
+        'program development','applied research','superintendency','theoretical foundations','systematic inequity','hr management','pe major',
+        'swimming','dance','aquatics','motor development','pe/ape','prek-12','prek',
+        'kindergarden','daycare','sport','wellness','nutrition','human sexuality','health','classroom','cpr','aed','first aid','death and dying','interpersonal',
+        'intervention','literacy','childhood','skillful practice','foundational knowledge','adolescence','american sign','sign language','deaf','youth',
+        'children','behavior management','birth','family'
+    ]
+    FINE_ARTS = ['polk','test','studio art','drawing','arts','dimensional design','2d','3d',' art ','art ',' art','art:','creation','memorial','figure','experience mapping','graphic',
+        'typograpy','watercolor','photography','printmaking','lithography','serigraphy','intaglio','relief','art metal','sculpture','ceramics','painting','paint','animation',
+        'fabrication','responsive objects','studio','topics in art','art history','ancient art','medieval art','gothic art','architecture','baroque','dutch and flemish',
+        'art of india','european art','contemporary','american art','greek and roman art','museum','exhibition design','woodworking','developmental art','visual identity','branding',
+        'design intership','music','convocation','aural skills','applied study','ensemble','piano','voice','diction','instuments','instumental','vocal','composition','conducting',
+        'form and analysis','midi','applied lessons','chamber','recital','instrumentation','instrument','opera','theater','theatre','pedagogy','chore','choral','keyboard','keybd',
+        'pianist','symphonic','symphony','orchest',' song','strings','string','rythme','private lesson','studio','audio','costume','set design','lighting and sound',
+        'acting studio','directing','culture and style','intro to acting','introduction to acting','play analysis','musical','drama','creative process','history of styles','scene shop',
+        'comedy','playwright','stage','props','makeup','screen','entertainment','design/tech','jazz'
+    ]
+    GOV_LAW = ['government','criminal','intro to law', 'introduction to law', 'constitutional law','administrative law','international law','judicial','environmental law','justice',
+        'correctional','police','policing','crime','investigation','guilt','courts','violence','criminology','terrorism','homeland security','human behavior','social issues','human services',
+        'public admin','public policy','intergovernmental','public sector','leadership and ethics','non-profit','pub admin','nonprofit','human resources','hr','fire and emergency','fire & emergency',
+        'fesa','faea','faer','municipal','bureaucracy','economic development','health care management','health care administration','health care policy','public budgeting','military',
+        'basic leadership','advanced leadership','us army','u.s. army','cadet','rotc','officer','ferm','emergency','fire prevention','community risk'
+    ]
+    # HISTORY IS LAST DUE TO MANY CONFLICTS
+    HISTORY = ['history','historical','civilization','migration','great depression','ancient greece','middle ages','roman','reformation','renaissance','europe','nationalism','modernism',
+        'revolution','american cities','culture and society','imperial','world war','wars','nazi','reich','holocaust','nuclear america','globalization','twentieth century','ancient',
+        'democracy','republic','communism','middle ages','medieval','middle east','african american','philosphopy','elementary logic','symbolic logic','cognitive science','theory of knowledge',
+        'biomedical ethics','ethical issues','ethical problems','existentialism','climate justice','human nature','religion','religious','bible','testament','hebrew','christ','catholic',
+        'judaism','hindu','budda','buddhism','islam','muslim','catholicism','jesus','letters to paul','buddhist','mystical','cults','sects'
+    ]
+    INTERDISCIPLINARY = ['wg stds','liberal studies','international studies','international issues','international negotiation','diplomatic','diplomacy','women','feminist','feminism',
+        'gender studies','lgbtq','lgbtq+','queer','transexual','asexual','masculinity','sexuality','diversity','inclusion','inclusive','african american studies'
+    
+    ]
+    NURSING = ['nurs','nursing','medicine','medical','health','physiology','evidence-based practice','ethical care','pharm','pharmacy','drugs','childbearing','obstetrics','clinical',
+        'children and adolescents','nutrition','pathophysiology','informatics','aging','therapeutic','caring','human anatomy','kinesiology','biomechanics','motor learning',
+        'exercise','resistance training','recreation','leisure','adventure','activities','fitness'
+    ]
+    PSYCHOLOGY = ['psychology','psych','abnormal behavior','research methods','abnormal behav','principles of learning','personality','autism','counseling','professional identity',
+        'career development','contextual diagnosis','social and cultural foundations','trauma','neuroscience','mental health','student affairs','student development'
+    ]
+    SOCIAL_SCIENCES = ['anthrophology','anthro','archaeology','language in culture','ethnographic','osteology','human evolution','race and human','sociology','intercultural',
+        'ethnicity','social statistics','soc. theory','social stratification','social control','social research','geography','geo','gis','environment','natural resource','natural hazards',
+        'urban planning','political','poli sci','polisci','pol sci','politics','government and politics','civic','democratic','social justice','soc just','rhetorical criticism',
+        'social work','geog','soil','conservation','weather','wisconsin','meteorology','climatology','water resource','cartography','population and environment'
+    ]
+    # LOWER DOWN LIST due to BIO
+    STEM = ['biology','biological concepts','bio','microbi','neurobio','bacteri','animal behavior','virology','mycology','ornithology','ichtyology','entomology','ecology','immunology'
+    'microscopy','hematology','parasitology','freshwater invertebrates','genetics','ecosystems','biotechnology','ecosphere','human physiology','epidemiology','living systems',
+    'plant taxonomy','rt block','physics','astronomy','astro','stars','galaxies','universe','solar system','energy','engineering','astrophysics','electronic circuits','physical optics',
+    'stellar structure','digital instrumentation','electricity','quantum','geology','earth','dinosaurs','reptiles','mineralogy','lithology','petrology','paleontology','stratigraphy',
+    'geomorphology','mineral','geophysics','tectonics','oceanography','glacial','hydrogeology','geochemistry','computer science','object oriented','java','computer architecture','assembly language',
+    'programming','data structures','algorithms','software engineering','computing ethics','operating systems','computing','compilers','computer','database systems','web design','networking and data',
+    'mobile application','web development','agile','math','mathematics','algebra','trigonometry','statistics','number systems','calculas','geometry','data explorations','propbability','topology',
+    'differential equations','chemistry','chem','biochem','biochemistry','general organic','organic chemistry','biophysical','inorganic',
+    
+    ]
+    SUSTAINABILITY = ['sustainable','sustainability','energy and facilities management','environmental','environment science','nature writing','env studies','physical geography','climate'
+        'ecology','population problems'
+    ]
     
     
     NON_EDITOR_ROLES = ['student', 'interpreter pre-semester', 'observers', 'interpreter semester', 'learner', 'students']
@@ -116,26 +183,28 @@ class CanvasView(BrowserView):
             subject_id = 'fine-arts' 
         elif any(x in course_title for x in self.GOV_LAW):
             subject_id = 'government-law-human-services'
-        elif any(x in course_title for x in self.HISTORY):
-            subject_id = 'history-philosophy-religion'
         elif any(x in course_title for x in self.INTERDISCIPLINARY):
             subject_id = 'interdisciplinary'
         elif any(x in course_title for x in self.NURSING):
             subject_id = 'nursing-allied-health'
         elif any(x in course_title for x in self.PSYCHOLOGY):
             subject_id = 'psychology-counseling'
-        elif any(x in course_title for x in self.STEM):
-            subject_id = 'stem'
         elif any(x in course_title for x in self.SOCIAL_SCIENCES):
             subject_id = 'social-sciences'
         elif any(x in course_title for x in self.SUSTAINABILITY):
             subject_id = 'sustainability'
-
+        elif any(x in course_title for x in self.STEM): # SECOND TO BOTTOM DUE TO BIO
+            subject_id = 'stem'
+        elif any(x in course_title for x in self.HISTORY):  # LAST DUE TO HISTORY BEING OVER MANY GROUPS
+            subject_id = 'history-philosophy-religion'
+        
+        
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
         if brains:
+            cp_logger.info("FOUND: " + str(course_title) + brains[0].Title) # FOUND
             return brains[0]
             
-        logger.info("Course Page Missing Subject: " + str(course_title)) # log missing data
+        cp_logger.info("MISS: " + str(course_title)) # MISS
         return None
     
     def get_disciplines(self):
@@ -164,7 +233,7 @@ class CanvasView(BrowserView):
         if self.request.form.get('form.online','').lower() == 'yes':
             all_fail_email = False #success
             
-            to_email = ['distancelibrary@uwosh.edu',self.canvas_person_email,'hietpasd@uwosh.edu']
+            to_email = ['onlinelearning@uwosh.edu',self.canvas_person_email,'librarytechnology@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This is an online course, please contact the instructor for information." + str(librarian_count) + "<br/><br/>"
@@ -207,7 +276,7 @@ class CanvasView(BrowserView):
                     
                 all_fail_email = False #success
                     
-                to_email = [staff.email, self.canvas_person_email, 'hietpasd@uwosh.edu']
+                to_email = [staff.email, self.canvas_person_email, 'librarytechnology@uwosh.edu']
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Here is the course page: " + obj.absolute_url() + "<br/><br/>"
@@ -228,7 +297,7 @@ class CanvasView(BrowserView):
         if all_fail_email:
             self.message = "You do not have a librarian assigned to you.  We are assigning you a librarian best suited to this subject.  They will be contacting you shortly."
             
-            to_email = ['libraryinstruction@uwosh.edu', self.canvas_person_email, 'hietpasd@uwosh.edu']
+            to_email = ['libraryinstruction@uwosh.edu', self.canvas_person_email, 'librarytechnology@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian. <br/><br/>"

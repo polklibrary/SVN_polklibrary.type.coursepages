@@ -40,8 +40,8 @@
                         
                         <div>
                             If you would like a librarian to enhance the resources on your course, please
-                            click the request button below. Otherwise Polk Library will only provide 
-                            general resources based off of this courses subject.
+                            click the request button below. If not, UW Oshkosh Libraries will attempt to provide
+                            the best resources based off of the course title.
                         </div>
                         
                         <br />
@@ -84,7 +84,9 @@
                             <strong>What are general subject resources?</strong>
                         </div>
                         <div>
-                            General subject resources will provide a general "catch all" of resources for your courses subject.  These resources will be included regardless of requesting enhanced library resources.
+                            General subject resources will provide a general "catch all" of resources based off of the course title.  
+                            These resources will be included regardless of requesting enhanced library resources. The algorithm which determines 
+                            the general resources will continue evolve especially during the initial rollout of Canvas.
                         </div>
                     </div>
                     
@@ -113,11 +115,11 @@
                         <select id="search-scopes" name="search_scope">
                             <option value="OSH_ALL">Everything</option>
                             <option value="OSH_PCI">- Articles</option>
-                            <option value="OSH_ALMA">- Books &amp; Media (UW Oshkosh)</option>
+                            <option value="OSH_ALMA">- Books &amp; Media (UW Oshkosh Libraries)</option>
                             <option value="UW_ALMA">- Books &amp; Media (UW System)</option>
                             <option value="UW_DIGCOLL">- UW Digital Collections</option>
                             <option value="OSH_Archive">- Historical Society Archives &amp; Oshkosh Archives</option>
-                            <option value="OSH_CR">Course Reserves (UW Oshkosh)</option>
+                            <option value="OSH_CR">Course Reserves (UW Oshkosh Libraries)</option>
                         </select>
                     </div>
                     <div class="col-10">
@@ -192,7 +194,7 @@
             </div>
             
             <div class="canvas-link">
-                <a href="https://www.uwosh.edu/library">Polk Library</a>
+                <a href="https://www.uwosh.edu/library">UW Oshkosh Libraries</a>
                 <a href="https://www.uwosh.edu/library/accounts">Library Accounts</a>
                 <a href="https://www.uwosh.edu/library/services/forms/research-assistance">Research Assistance</a>
                 <a href="https://www.uwosh.edu/library/help/tutorials">Tutorials</a>
