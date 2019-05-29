@@ -206,12 +206,18 @@ class CanvasView(BrowserView):
             subject_id = 'history-philosophy-religion'
         
         
+        # FOUND 
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
         if brains:
             self.customlog("FOUND: " + str(course_title) + brains[0].Title) # FOUND
             return brains[0]
-            
+        
+        # MISS get general
         self.customlog("MISS: Title=" + str(course_title) + '; Id=' + self.canvas_course_id + '; Email=' + self.canvas_person_email) # MISS
+        brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id='general')
+        if brains:
+            return brains[0]
+        
         return None
     
     def get_disciplines(self):
