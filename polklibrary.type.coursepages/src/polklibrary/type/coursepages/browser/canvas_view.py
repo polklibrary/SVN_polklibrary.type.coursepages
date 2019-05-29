@@ -4,17 +4,17 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from polklibrary.type.coursepages.utility import MailMe
 import json, logging
-
-def setup_logger(name, log_file, level=logging.INFO):
-    handler = logging.FileHandler(log_file)        
-    handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(handler)
-    return logger
-
 logger = logging.getLogger("Plone")
-cp_logger = setup_logger('CoursePages', 'var/coursepages.log')
+
+# def setup_logger(name, log_file, level=logging.INFO):
+    # handler = logging.FileHandler(log_file)        
+    # handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
+    # logger = logging.getLogger(name)
+    # logger.setLevel(level)
+    # logger.addHandler(handler)
+    # return logger
+
+# cp_logger = setup_logger('CoursePages', 'var/coursepages.log')
 
 
 class CanvasView(BrowserView):
@@ -30,7 +30,7 @@ class CanvasView(BrowserView):
         'virtualization technologies','systems analysis','data communicatio','agile','c#','e-commerce','technology innovation','software design',
         'mobile application','planning systems','engineering project management','change management','entrepreneurship','global management','employee',
         'occupational safety','compensation management','benefits','project execution','sales','retail management','consumer behavior','sales management',
-        'product management','purchasing behavior','supply chain','manufacturing','procurement','quality management'
+        'product management','purchasing behavior','supply chain','manufacturing','procurement','quality management',
     ]
     COMMUNICATION = ['communication','public speaking','speech communication','interpersonal speech','speech','rhetoric','public advocacy','interviewing',
         'oral interpretation','effective listening','argumentation','debate','speaking','prison exchange','gender and discourse','persuasion','participation',
@@ -95,7 +95,6 @@ class CanvasView(BrowserView):
     'programming','data structures','algorithms','software engineering','computing ethics','operating systems','computing','compilers','computer','database systems','web design','networking and data',
     'mobile application','web development','agile','math','mathematics','algebra','trigonometry','statistics','number systems','calculas','geometry','data explorations','propbability','topology',
     'differential equations','chemistry','chem','biochem','biochemistry','general organic','organic chemistry','biophysical','inorganic',
-    
     ]
     SUSTAINABILITY = ['sustainable','sustainability','energy and facilities management','environmental','environment science','nature writing','env studies','physical geography','climate',
         'ecology','population problems',
@@ -201,10 +200,10 @@ class CanvasView(BrowserView):
         
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id=subject_id)
         if brains:
-            cp_logger.info("FOUND: " + str(course_title) + brains[0].Title) # FOUND
+            logger.info("FOUND: " + str(course_title) + brains[0].Title) # FOUND
             return brains[0]
             
-        cp_logger.info("MISS: " + str(course_title)) # MISS
+        logger.info("MISS: " + str(course_title)) # MISS
         return None
     
     def get_disciplines(self):
