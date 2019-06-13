@@ -246,7 +246,7 @@ class CanvasView(BrowserView):
         if self.request.form.get('form.online','').lower() == 'yes':
             all_fail_email = False #success
             
-            to_email = ['onlinelearning@uwosh.edu',self.canvas_person_email,'librarytechnology@uwosh.edu']
+            to_email = ['onlinelibrary@uwosh.edu',self.canvas_person_email,'librarytechnology@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This is an online course, please contact the instructor for information." + str(librarian_count) + "<br/><br/>"
