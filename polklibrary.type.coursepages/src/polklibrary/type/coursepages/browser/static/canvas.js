@@ -38,8 +38,6 @@ var Primo = {
 }
 
 
-
-
 var DB = {
     
     construct : function(){
@@ -116,6 +114,7 @@ var DB = {
 }
 
 
+
 var Accordians = {
     
     construct : function(){
@@ -137,6 +136,7 @@ var Accordians = {
     }
     
 }
+
 
 
 

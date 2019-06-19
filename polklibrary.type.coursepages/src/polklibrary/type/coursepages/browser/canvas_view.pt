@@ -6,7 +6,10 @@
 
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++production/++unique++/default.css" />
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++static/++unique++/plone-legacy-compiled.css" />
-<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/production.css" />
+<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/uwosh.css" />
+<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/mobile.css" />
+<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/polk.css" />
+<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/tinymce.css" />
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.css" />
 
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
