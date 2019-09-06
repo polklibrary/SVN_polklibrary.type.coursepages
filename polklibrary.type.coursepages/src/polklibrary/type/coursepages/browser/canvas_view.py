@@ -298,7 +298,7 @@ class CanvasView(BrowserView):
         if self.request.form.get('form.online','').lower() == 'yes':
             all_fail_email = False #success
             
-            to_email = ['onlinelibrary@uwosh.edu',self.canvas_person_email,'librarytechnology@uwosh.edu']
+            #to_email = ['onlinelibrary@uwosh.edu',self.canvas_person_email,'librarytechnology@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This is an online course, please contact the instructor for information." + str(librarian_count) + "<br/><br/>"
@@ -308,7 +308,12 @@ class CanvasView(BrowserView):
             body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
             body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
             body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
-            MailMe(subject, from_email, to_email, body)
+            
+            
+            #MailMe(subject, from_email, to_email, body)
+            MailMe(subject, from_email, ['onlinelibrary@uwosh.edu'], body)
+            MailMe(subject, from_email, [self.canvas_person_email], body)
+            MailMe(subject, from_email, ['librarytechnology@uwosh.edu'], body)
         
             
         
@@ -346,7 +351,7 @@ class CanvasView(BrowserView):
                     
                 all_fail_email = False #success
                     
-                to_email = [staff.email, self.canvas_person_email, 'librarytechnology@uwosh.edu']
+                #to_email = [staff.email, self.canvas_person_email, 'librarytechnology@uwosh.edu']
                 from_email = [self.canvas_person_email]
                 subject = "Course Page Request: " + self.canvas_course_title
                 body = "Here is the course page: " + obj.absolute_url() + "<br/><br/>"
@@ -357,7 +362,10 @@ class CanvasView(BrowserView):
                 body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
                 body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
                 
-                MailMe(subject, from_email, to_email, body)
+                #MailMe(subject, from_email, to_email, body)
+                MailMe(subject, from_email, [staff.email], body)
+                MailMe(subject, from_email, [self.canvas_person_email], body)
+                MailMe(subject, from_email, ['librarytechnology@uwosh.edu'], body)
                     
                 
             except Exception as e:
@@ -368,7 +376,7 @@ class CanvasView(BrowserView):
         if all_fail_email:
             self.message = "You do not have a librarian assigned to you.  We are assigning you a librarian best suited to this subject.  They will be contacting you shortly."
             
-            to_email = ['libraryinstruction@uwosh.edu', self.canvas_person_email, 'librarytechnology@uwosh.edu']
+            #to_email = ['libraryinstruction@uwosh.edu', self.canvas_person_email, 'librarytechnology@uwosh.edu']
             from_email = [self.canvas_person_email]
             subject = "Course Page Request: " + self.canvas_course_title
             body = "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian. <br/><br/>"
@@ -379,7 +387,10 @@ class CanvasView(BrowserView):
             body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
             body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
         
-            MailMe(subject, from_email, to_email, body)
+            #MailMe(subject, from_email, to_email, body)
+            MailMe(subject, from_email, ['libraryinstruction@uwosh.edu'], body)
+            MailMe(subject, from_email, [self.canvas_person_email], body)
+            MailMe(subject, from_email, ['librarytechnology@uwosh.edu'], body)
 
             
     @property
