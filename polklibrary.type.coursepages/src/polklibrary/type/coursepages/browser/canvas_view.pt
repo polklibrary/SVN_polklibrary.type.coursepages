@@ -66,6 +66,7 @@
                             <br />
                             <input type="hidden" name="custom_canvas_course_id" value="${view/canvas_course_id}" />
                             <input type="hidden" name="context_title" value="${view/canvas_course_title}" />
+                            <input type="hidden" name="context_label" value="${view/canvas_course_subject}" />
                             <input type="hidden" name="roles" value="${view/canvas_role}" />
                             <input type="hidden" name="lis_person_name_given" value="${view/canvas_firstname}" />
                             <input type="hidden" name="lis_person_name_family" value="${view/canvas_lastname}" />
