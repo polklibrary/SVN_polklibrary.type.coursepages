@@ -304,11 +304,16 @@ class CanvasView(BrowserView):
             body = "This is an online course, please contact the instructor for information." + str(librarian_count) + "<br/><br/>"
             body += "Canvas Course Instructor: " + self.canvas_person_name + "<br/>"
             body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+            body += "Canvas Course Subject: " + self.canvas_course_subject + "<br/>"
             body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
             body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
             body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
-            
             MailMe(subject, from_email, to_email, body)
+        
+            
+        
+        
+        
         
         # Standard workflow
         elif librarian and librarian_count == 1:
@@ -347,6 +352,7 @@ class CanvasView(BrowserView):
                 body = "Here is the course page: " + obj.absolute_url() + "<br/><br/>"
                 body += "Canvas Course Instructor: " + self.canvas_person_name + "<br/>"
                 body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+                body += "Canvas Course Subject: " + self.canvas_course_subject + "<br/>"
                 body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
                 body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
                 body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
@@ -368,6 +374,7 @@ class CanvasView(BrowserView):
             body = "This appears to be a new faculty member.  No course page could be auto-assigned, please assign this faculty member to a librarian. <br/><br/>"
             body += "Canvas Course Instructor: " + self.canvas_person_name + "<br/>"
             body += "Canvas Course ID: " + self.canvas_course_id + "<br/>"
+            body += "Canvas Course Subject: " + self.canvas_course_subject + "<br/>"
             body += "Canvas Course Title: " + self.canvas_course_title + "<br/>"
             body += "Canvas Online Course: " + self.request.form.get('form.online','') + "<br/>"
             body += "Instructor Note: " + self.request.form.get('form.note','')+ "<br/>"
