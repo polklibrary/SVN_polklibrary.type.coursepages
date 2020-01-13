@@ -184,7 +184,8 @@ class CanvasView(BrowserView):
     def get_course_page(self, canvas_id):
         brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=canvas_id)
         for brain in brains:
-            if str(canvas_id) in brain.resources:
+            # TODO: Add trim to resources due to trailing spaces entered by librarians
+            if str(canvas_id) in [x.replace(' ','') for x in brain.resources]:
                 return brains[0]
         return None
 
