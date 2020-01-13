@@ -182,11 +182,12 @@ class CanvasView(BrowserView):
             logger.exception(e)
      
     def get_course_page(self, canvas_id):
-        brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page')
+        brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=canvas_id)
         for brain in brains:
             # TODO: Add trim to resources due to trailing spaces entered by librarians
-            if str(canvas_id) in [x.replace(' ','') for x in brain.resources]:
-                return brains[0]
+            if brain.resources:
+                if str(canvas_id) in [x.replace(' ','') for x in brain.resources]:
+                    return brains[0]
         return None
 
     def get_librarian(self, course_page):
