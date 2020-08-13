@@ -21,6 +21,7 @@
 
 	<metal:content fill-slot="content-core">
         
+        <tal:block condition="view/has_member" >
         <div id="page-view" class="column" tal:define="staff view/get_member">
             <div class="col-100">
                 <tal:block replace="structure staff/education/output"></tal:block>
@@ -43,7 +44,7 @@
                 </ul>
             </div>
         </div>
-        
+        </tal:block>
         
         
 	</metal:content>

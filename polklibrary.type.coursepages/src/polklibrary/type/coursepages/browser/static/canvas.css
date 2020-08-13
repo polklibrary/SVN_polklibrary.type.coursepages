@@ -142,3 +142,19 @@ h1.section-heading {
     background-color: #1F7AB2;
 }
 
+[id^="libchat_"] button {
+    position: relative;
+    font-weight: bold;
+}
+[id^="libchat_"] button:after {
+    content: " ";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #2385C4;
+    bottom: -20px;
+    left: 10px;
+}
+

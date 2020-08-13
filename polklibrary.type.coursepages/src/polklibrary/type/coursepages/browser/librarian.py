@@ -9,6 +9,9 @@ class LibrarianView(BrowserView):
     
     def __call__(self):
         return self.template()
+        
+    def has_member(self):
+        return self.context.location != None
 
     def get_member(self):
         return api.content.get(path=self.context.location)
