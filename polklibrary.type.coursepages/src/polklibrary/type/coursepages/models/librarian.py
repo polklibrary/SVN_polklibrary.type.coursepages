@@ -38,6 +38,12 @@ class ILibrarian(model.Schema):
             required=False,
         )
         
+    libchat = schema.Text(
+            title=u"LibChat Code",
+            default=u" ",
+            required=False,
+        )
+        
     resources = schema.List(
             title=u"List of faculty emails to be auto-assigned to this librarian (one email per line)",
             required=False,

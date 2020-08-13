@@ -158,6 +158,10 @@
                 <div><strong>Phone:</strong> <a class="pat-telephone" href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
                 <div><strong>Office:</strong> <span>${view/librarian/location}</span></div>
                 
+                
+                
+                <div class="librarian-chat" tal:content="structure view/course_librarian/libchat|nothing" style="display: none"></div>
+                
                 <div class="librarian-chat">
                     <span class="pat-chat" data-display="inline">
                         <a href="#" data-chat="${view/course_librarian/chat}" data-skin="3760">
@@ -174,6 +178,7 @@
                         </a>
                     </span>
                 </div>
+                
             </div>
             
             <!-- No Librarian Found -->
@@ -182,6 +187,13 @@
                 <img class="librarian-portrait" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
                 <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.edu">infodesk@uwosh.edu</a></div>
                 <div><strong>Phone:</strong> <a class="pat-telephone" href="tel:9208211542">9208211542</a></div>
+                
+                
+                
+                <div class="librarian-chat" style="display: none">
+                    <div id="libchat_77858bdadb8dcffac28f62b0fd5030e9"></div>
+                    <script src="https://uwosh.libanswers.com/load_chat.php?hash=77858bdadb8dcffac28f62b0fd5030e9"></script>
+                </div>
                 
                 <div class="librarian-chat">
                     <span class="pat-chat" data-display="inline">
