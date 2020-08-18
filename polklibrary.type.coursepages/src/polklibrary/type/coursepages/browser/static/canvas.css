@@ -153,8 +153,8 @@ h1.section-heading {
     height: 0;
     border-left: 20px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 20px solid #2385C4;
-    bottom: -20px;
+    border-top: 15px solid #2385C4;
+    bottom: -15px;
     left: 10px;
 }
 

@@ -13,7 +13,6 @@
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.css" />
 
 <script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/chat.js"></script>
 <script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/mobile.js"></script>
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
 <script type="text/javascript">
@@ -158,27 +157,8 @@
                 <div><strong>Phone:</strong> <a class="pat-telephone" href="tel:${view/librarian/phone}">${view/librarian/phone}</a></div>
                 <div><strong>Office:</strong> <span>${view/librarian/location}</span></div>
                 
-                
-                
-                <div class="librarian-chat" tal:content="structure view/course_librarian/libchat|nothing" style="display: none"></div>
-                
-                <div class="librarian-chat">
-                    <span class="pat-chat" data-display="inline">
-                        <a href="#" data-chat="${view/course_librarian/chat}" data-skin="3760">
-                            <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
-                            ${view/librarian/Title} is available
-                        </a> 
-                        <a href="#" data-chat="polk-library-ref" data-skin="3760">
-                            <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
-                            ${view/librarian/Title} is not available.  Talk to another librarian?
-                        </a> 
-                        <a href="#">
-                            <img class="no-chat" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
-                            No librarian available.
-                        </a>
-                    </span>
-                </div>
-                
+                <div class="librarian-chat" tal:content="structure view/course_librarian/libchat|nothing"></div>
+
             </div>
             
             <!-- No Librarian Found -->
@@ -188,25 +168,11 @@
                 <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.edu">infodesk@uwosh.edu</a></div>
                 <div><strong>Phone:</strong> <a class="pat-telephone" href="tel:9208211542">9208211542</a></div>
                 
-                
-                
-                <div class="librarian-chat" style="display: none">
+                <div class="librarian-chat">
                     <div id="libchat_77858bdadb8dcffac28f62b0fd5030e9"></div>
                     <script src="https://uwosh.libanswers.com/load_chat.php?hash=77858bdadb8dcffac28f62b0fd5030e9"></script>
                 </div>
                 
-                <div class="librarian-chat">
-                    <span class="pat-chat" data-display="inline">
-                        <a href="#" data-chat="polk-library-ref" data-skin="3760">
-                            <img src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
-                            Talk to a librarian?
-                        </a> 
-                        <a href="#">
-                            <img class="no-chat" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/chat.png" alt="Chat" />
-                            No librarian available.
-                        </a>
-                    </span>
-                </div>
             </div>
             
             <div class="canvas-link">
