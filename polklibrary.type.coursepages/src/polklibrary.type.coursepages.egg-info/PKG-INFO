@@ -1,4 +1,4 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: polklibrary.type.coursepages
 Version: 1.0a1
 Summary: Library Course pages
@@ -104,3 +104,4 @@ Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 2.7
 Classifier: Operating System :: OS Independent
 Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Provides-Extra: test

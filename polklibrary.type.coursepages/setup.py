@@ -43,15 +43,20 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'plone.api',
-        'plone.directives.form',
-        'plone.app.dexterity',
         'setuptools',
+        # -*- Extra requirements: -*-
         'z3c.jbot',
+        'plone.api>=1.8.4',
+        'plone.restapi',
+        'plone.app.dexterity',
     ],
     extras_require={
         'test': [
             'plone.app.testing',
+            # Plone KGS does not use this version, because it would break
+            # Remove if your package shall be part of coredev.
+            # plone_coredev tests as of 2016-04-01.
+            'plone.testing>=5.0.0',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
         ],
