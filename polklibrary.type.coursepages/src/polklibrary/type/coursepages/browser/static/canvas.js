@@ -26,16 +26,6 @@ var Canvas = {
 
 }
 
-var Primo = {
-    
-    construct : function() {
-        $('.content-search form').submit(function(){
-            var v = $.trim($('#primo-query').val().replace(/[,&]/g,''));
-            $('#primo-query-translated').val( 'any,contains,' + v );
-        });
-    },
-    
-}
 
 
 var DB = {
@@ -143,6 +133,5 @@ var Accordians = {
 $(document).ready(function(){
     DB.construct();
     Canvas.construct();
-    Primo.construct();
     Accordians.construct();
 });
