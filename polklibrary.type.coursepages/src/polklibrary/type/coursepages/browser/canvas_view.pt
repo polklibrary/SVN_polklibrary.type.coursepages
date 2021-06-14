@@ -171,7 +171,7 @@
             <div class="column-inner-10 canvas-librarian" tal:condition="not: view/librarian">
                 <h2>Reference Librarians</h2>
                 <img class="librarian-portrait" src="${view/portal/absolute_url}/++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
-                <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.edu">infodesk@uwosh.edu</a></div>
+                <div><strong>Email:</strong> <a href="mailto:infodesk@uwosh.libanswers.com">infodesk@uwosh.libanswers.com</a></div>
                 <div><strong>Phone:</strong> <a class="pat-telephone" href="tel:9208211542">9208211542</a></div>
                 
                 <div class="librarian-chat">
