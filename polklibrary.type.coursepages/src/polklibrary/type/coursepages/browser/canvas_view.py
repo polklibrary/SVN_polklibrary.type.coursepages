@@ -124,10 +124,7 @@ class CanvasView(BrowserView):
     
     def __call__(self):
         self.message = None
-        
-        self.request.response.setHeader('Access-Control-Allow-Origin', '*')
-        self.request.response.setHeader('X-Frame-Options', '*')
-        
+                
         canvas_course_id = self.request.form.get('custom_canvas_course_id', 0)
         canvas_course_title = self.request.form.get('context_title', '')
         canvas_course_subject = self.request.form.get('context_label', '')
