@@ -175,7 +175,7 @@ class CanvasView(BrowserView):
     # custom logger causes plone not start...
     def customlog(self, message):
         try:
-            with open('/opt/plone/plone-5-zeo-0/zeocluster/var/coursepage.log', 'a+') as filehandle:  
+            with open('/opt/plone52/zeocluster/var/coursepage.log', 'a+') as filehandle:  
                 filehandle.write(message + '\n')
         except Exception as e:
             logger.info('ERROR: Customlog append fail -- ' + str(e))

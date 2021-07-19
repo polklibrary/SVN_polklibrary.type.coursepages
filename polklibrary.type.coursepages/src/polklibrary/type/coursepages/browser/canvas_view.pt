@@ -4,16 +4,16 @@
 <title>Polk Library Resources</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++production/++unique++/default.css" />
-<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++static/++unique++/plone-legacy-compiled.css" />
-<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/uwosh.css" />
-<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/mobile.css" />
-<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/polk.css" />
-<link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/library/++theme++uwosh/css/tinymce.css" />
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++production/default.css" />
+<link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++static/plone-legacy-compiled.css" />
+<link rel="stylesheet" type="text/css" href="https://library.uwosh.edu/++theme++uwosh/css/uwosh.css" />
+<link rel="stylesheet" type="text/css" href="https://library.uwosh.edu/++theme++uwosh/css/mobile.css" />
+<link rel="stylesheet" type="text/css" href="https://library.uwosh.edu/++theme++uwosh/css/polk.css" />
+<link rel="stylesheet" type="text/css" href="https://library.uwosh.edu/++theme++uwosh/css/tinymce.css" />
 <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.css" />
 
-<script type="text/javascript" src="https://www.uwosh.edu/library/++plone++static/components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.uwosh.edu/library/++theme++uwosh/js/mobile.js"></script>
+<script type="text/javascript" src="https://library.uwosh.edu/++plone++static/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://library.uwosh.edu/++theme++uwosh/js/mobile.js"></script>
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
 <script type="text/javascript">
     var SubjectDisciplines = ${view/get_disciplines};
@@ -182,12 +182,12 @@
             </div>
             
             <div class="canvas-link">
-                <a href="https://www.uwosh.edu/library">UW Oshkosh Libraries</a>
-                <a href="https://www.uwosh.edu/library/accounts">Library Accounts</a>
-                <a href="https://www.uwosh.edu/library/services/forms/research-assistance">Research Assistance</a>
-                <a href="https://www.uwosh.edu/library/help/tutorials">Tutorials</a>
-                <a href="https://www.uwosh.edu/library/services/citing-sources">Citing Sources</a>
-                <a href="https://www.uwosh.edu/library/help/faq/how-to-general/evaluating-sources">Evaluating Sources</a>
+                <a href="https://library.uwosh.edu">UW Oshkosh Libraries</a>
+                <a href="https://library.uwosh.edu/accounts">Library Accounts</a>
+                <a href="https://library.uwosh.edu/services/forms/research-assistance">Research Assistance</a>
+                <a href="https://library.uwosh.edu/help/tutorials">Tutorials</a>
+                <a href="https://library.uwosh.edu/services/citing-sources">Citing Sources</a>
+                <a href="https://library.uwosh.edu/help/faq/how-to-general/evaluating-sources">Evaluating Sources</a>
             </div>
             
             <div class="clear"></div>
