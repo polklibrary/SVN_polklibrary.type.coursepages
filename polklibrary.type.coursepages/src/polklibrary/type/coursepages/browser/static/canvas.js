@@ -1,7 +1,7 @@
 var Canvas = {
 
-    POLK_ROOT : 'https://www.uwosh.edu/library/',
-    POLK_WS_ROOT : 'https://www.uwosh.edu/library/ws/',
+    POLK_ROOT : 'https://library.uwosh.edu/',
+    POLK_WS_ROOT : 'https://library.uwosh.edu/',
 
     construct : function() {
         $('a').attr('target','_blank'); // make links open new tabs
