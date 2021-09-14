@@ -266,7 +266,7 @@ class CanvasView(BrowserView):
             return brains[0]
         
         # MISS get general
-        self.customlog("MISS: Title=" + str(course_title) + " , " + str(course_subject) + '; Id=' + self.canvas_course_id + '; Email=' + self.canvas_person_email) # MISS
+        #self.customlog("MISS: Title=" + str(course_title) + " , " + str(course_subject) + '; Id=' + self.canvas_course_id + '; Email=' + self.canvas_person_email) # MISS
         brains = api.content.find(portal_type='polklibrary.type.subjects.models.subject', id='general')
         if brains:
             return brains[0]
