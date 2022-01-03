@@ -158,6 +158,9 @@ class CanvasView(BrowserView):
             self.course_librarian = None
             self.librarian = None
             self.subject = None
+            self.show_subject = False
+            self.show_search = False
+            
             
             if subject_brain:
                 self.subject = subject_brain.getObject()
@@ -165,7 +168,18 @@ class CanvasView(BrowserView):
             if course_page_brain:
                 self.course_page = course_page_brain.getObject()
                 self.librarian = self.get_librarian(self.course_page)
-            
+                
+                
+            if not self.course_page:
+                self.show_subject = True
+            elif self.subject and self.course_page.show_subject_resources:
+                self.show_subject = True
+                
+            if not self.course_page:
+                self.show_search = True
+            elif self.course_page.show_search_atuw:
+                self.show_search = True
+                
             self.requires_setup = self.is_canvas_editor and not self.course_page
             
             return self.template()

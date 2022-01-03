@@ -106,6 +106,7 @@
                 <div class="clear hspacer"></div>
             </tal:block>
             
+            <tal:block condition="view/show_search">
             <h2 class="section-heading">Search@UW</h2>
             <div class="content-area content-search">
                 <form id="primo-ve-search" class="column"  method="get" target="_blank" action="https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search" onsubmit="searchPrimo()" enctype="application/x-www-form-urlencoded; charset=utf-8">
@@ -141,8 +142,9 @@
                     <div class="clear hspacer"></div>
                 </form> 
             </div>
+            </tal:block>
         
-            <tal:block condition="view/subject">
+            <tal:block condition="view/show_subject">
                 <h2 class="section-heading">General Subject Resources</h2>
                 <div class="content-area content-subject" tal:content="structure view/subject/body/output|nothing"></div>
                 <div class="clear hspacer"></div>

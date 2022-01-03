@@ -27,6 +27,20 @@ class IPage(model.Schema):
             value_type=schema.TextLine()
         )
         
+    show_subject_resources = schema.Bool(
+            title=u"Show Subject Resources",
+            required=False,
+            default=True,
+            missing_value=True,
+        )
+        
+        
+    show_search_atuw = schema.Bool(
+            title=u"Show Search@UW",
+            required=False,
+            default=True,
+            missing_value=True,
+        )
         
 @indexer(IPage)
 def make_searchable(object, **kwargs):
