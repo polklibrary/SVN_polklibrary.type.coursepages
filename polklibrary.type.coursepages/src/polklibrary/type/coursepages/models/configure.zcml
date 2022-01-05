@@ -4,6 +4,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="polklibrary.type.coursepages">
 
-    <adapter name="SearchableText" factory=".page.make_searchable" />
+    <!-- <adapter name="SearchableText" factory=".page.make_searchable" /> -->
 
 </configure>
