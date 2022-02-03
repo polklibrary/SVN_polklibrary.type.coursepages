@@ -184,7 +184,7 @@ class CanvasView(BrowserView):
             
             return self.template()
     
-        return "Access denied.  Access to this LTI is only accessible from a uwosh instructure domain.  To get an exception added please contact librarytechnology@uwosh.edu."
+        return '<div>You are not using the official UWO Canvas URL. <br /><br /> UWO Library is only available on the official UWO Canvas: <b><a href="https://uwosh.instructure.com">https://uwosh.instructure.com</a></b>.  <br /><br />Not using the official UWO Canvas URL will cause issues in other addons such as Zoom, Office365, etc...  Please update your bookmark or link.<br /><br />If you have any questions or concerns, please contact <b>librarytechnology@uwosh.edu</b></div>'
 
     # custom logger causes plone not start...
     def customlog(self, message):
@@ -197,9 +197,13 @@ class CanvasView(BrowserView):
      
     def get_course_page(self, canvas_id):
         brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=canvas_id)
+        if not brains:
+            brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=' ' + str(canvas_id))
+        if not brains:
+            brains = api.content.find(portal_type='polklibrary.type.coursepages.models.page', resources=str(canvas_id) + ' ')
         for brain in brains:
             if brain.resources:
-                if str(canvas_id) in [x.replace(' ','') for x in brain.resources]:
+                if str(canvas_id).strip() in [x.strip() for x in brain.resources]:
                     return brains[0]
         return None
 
