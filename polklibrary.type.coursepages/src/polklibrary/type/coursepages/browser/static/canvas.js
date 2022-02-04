@@ -49,6 +49,7 @@ var DB = {
             if (result.tutorial != '') {
                 $(e).before(self.create('INFO', 'Tutorial Available', result.tutorial));
             }
+            $(e).attr('href', result.getURL);
             self.disciplines(result, e);
         };
         
