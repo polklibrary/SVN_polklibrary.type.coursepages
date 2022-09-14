@@ -66,7 +66,7 @@ var DB = {
         }
         
         var img = $('<img>').addClass('db-icon-' + type).attr('alt', type).attr('title', title).attr('src', Canvas.POLK_ROOT + icons[type]);
-        var a = $('<a>').addClass('db-info').attr('href', link).append(img);
+        var a = $('<a>').addClass('db-info').attr('target', '_blank').attr('href', link).append(img);
         return a;
     },
     
