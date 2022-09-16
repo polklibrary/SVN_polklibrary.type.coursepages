@@ -109,7 +109,7 @@
             <tal:block condition="view/show_search">
             <h2 class="section-heading">Search@UW</h2>
             <div class="content-area content-search">
-                <form id="primo-ve-search" class="column"  method="get" target="_blank" action="https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search" onsubmit="searchPrimo()" enctype="application/x-www-form-urlencoded; charset=utf-8">
+                <form id="primo-ve-search" class="column"  method="get" target="_top" action="https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search" onsubmit="searchPrimo()" enctype="application/x-www-form-urlencoded; charset=utf-8">
                     <div class="col-50">
                         <label for="primo-ve-query" class="hide">Search@UW:</label>
                         <input id="primo-ve-query" type="text" placeholder="Find articles, books, dvds and more with Search@UW" value="" /> 
