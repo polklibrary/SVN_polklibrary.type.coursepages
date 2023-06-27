@@ -84,6 +84,7 @@ class IPage(model.Schema):
             title=u"Citation Show/Hide and Ordering",
             required=False,
             value_type=schema.Choice(source=citation_choices),
+            missing_value=[]
         )
         
     citation_apa = RichText(
