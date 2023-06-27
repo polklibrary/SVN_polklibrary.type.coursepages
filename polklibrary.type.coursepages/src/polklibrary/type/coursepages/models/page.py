@@ -21,21 +21,34 @@ citation_choices = SimpleVocabulary([
 
 @provider(IContextAwareDefaultFactory)
 def default_apa_factory(context):
-    if not context.citation_apa:
-        return u"<p> </p>"
-    return context.citation_apa.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.page':
+        if context.aq_parent.citation_apa:
+            return context.aq_parent.citation_apa.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.librarian':
+        if context.citation_apa:
+            return context.citation_apa.output
+    return u"<p> </p>"
 
 @provider(IContextAwareDefaultFactory)
 def default_mla_factory(context):
-    if not context.citation_mla:
-        return u"<p> </p>"
-    return context.citation_mla.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.page':
+        if context.aq_parent.citation_mla:
+            return context.aq_parent.citation_mla.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.librarian':
+        if context.citation_mla:
+            return context.citation_mla.output
+    return u"<p> </p>"
+
 
 @provider(IContextAwareDefaultFactory)
 def default_chicago_factory(context):
-    if not context.citation_chicago:
-        return u"<p> </p>"
-    return context.citation_chicago.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.page':
+        if context.aq_parent.citation_chicago:
+            return context.aq_parent.citation_chicago.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.librarian':
+        if context.citation_chicago:
+            return context.citation_chicago.output
+    return u"<p> </p>"
 
 
 class IPage(model.Schema):
