@@ -93,6 +93,7 @@ class IPage(model.Schema):
             default_mime_type='text/structured',
             required=False, 
             defaultFactory=default_apa_factory,
+            missing_value=u"",
         )
         
     citation_mla = RichText(
@@ -101,6 +102,7 @@ class IPage(model.Schema):
             default_mime_type='text/structured',
             required=False,
             defaultFactory=default_mla_factory,
+            missing_value=u"",
         )
         
     citation_chicago = RichText(
@@ -109,6 +111,7 @@ class IPage(model.Schema):
             default_mime_type='text/structured',
             required=False,
             defaultFactory=default_chicago_factory,
+            missing_value=u"",
         )
         
 alsoProvides(IPage, IFormFieldProvider) # required for defaultFactory context.

@@ -15,11 +15,13 @@ class PageView(BrowserView):
     def get_citations(self):
     
         output = u""
-        for citation_id in self.context.citation_ordering:
-            citation = getattr(self.context, citation_id, None)
-            if citation:
-                if citation.raw:
-                    output += citation.raw + "<br />"
+        if hasattr(self.context, 'citation_ordering'):
+            for citation_id in self.context.citation_ordering:
+                if hasattr(self.context, 'citation_id'):
+                    citation = getattr(self.context, citation_id, None)
+                    if citation:
+                        if citation.raw:
+                            output += citation.raw + "<br />"
         return output
 
 
