@@ -2,8 +2,36 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="polklibrary.type.coursepages">
 
-    <!-- <adapter name="SearchableText" factory=".page.make_searchable" /> -->
+<!--
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory="polklibrary.type.coursepages.models.page.AddView"
+        name="polklibrary.type.coursepages.models.page"
+    />
+    <class class="polklibrary.type.coursepages.models.page.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>    -->
+        
+    <browser:page
+        for="polklibrary.type.coursepages.models.page.IPage"
+        name="edit"
+        class="polklibrary.type.coursepages.models.page.EditForm"
+        permission="cmf.ModifyPortalContent"
+    />
+    
+
+
+
+
+
 
 </configure>

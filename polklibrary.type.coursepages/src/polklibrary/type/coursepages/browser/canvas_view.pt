@@ -149,6 +149,14 @@
                 <div class="content-area content-subject" tal:content="structure view/subject/body/output|nothing"></div>
                 <div class="clear hspacer"></div>
             </tal:block>
+            
+            
+       
+            <tal:block define="citations view/get_citations" condition="citations">
+            <h2 class="section-heading">Course Citation Resources</h2>
+            <div tal:content="structure citations|nothing">
+            </div>
+            </tal:block>
 
             <div class="clear"></div>
         </div>

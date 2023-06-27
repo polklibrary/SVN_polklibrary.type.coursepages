@@ -298,6 +298,17 @@ class CanvasView(BrowserView):
                 result[i] = i
         return json.dumps(result)
         
+    @property
+    def get_citations(self):
+    
+        output = u""
+        for citation_id in self.course_page.citation_ordering:
+            citation = getattr(self.course_page, citation_id, None)
+            if citation:
+                if citation.raw:
+                    output += citation.raw + "<br />"
+        return output
+
         
     def workflow(self):   
         librarian_count = 0

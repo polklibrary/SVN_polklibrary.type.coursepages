@@ -8,6 +8,17 @@
 
 	<metal:block fill-slot="style_slot">
         <style>
+            #content-core h2.section-heading {
+                background-color: #a57b08;
+                border-radius: 3px;
+                margin: 10px 0px 5px 0px;
+                padding: 5px 10px;
+                color: white;
+            }
+            #content-core input[type="submit"]{
+                background-color: rgb(64,112,176);
+                color: white;
+            }
         </style>
 	</metal:block>
     
@@ -22,11 +33,19 @@
 	<metal:content fill-slot="content-core">
         
         <div id="page-view" class="column">
-            <div class="col-100" tal:content="structure context/body/output|nothing">
             
+            <h2 class="col-100 section-heading">Course Specific Resources</h2>
+            <div class="col-100" tal:content="structure context/body/output|nothing">
             </div>
+       
+            <tal:block define="citations view/get_citations" condition="citations">
+            <h2 class="col-100 section-heading">Course Citation Resources</h2>
+            <div class="col-100" tal:content="structure citations|nothing">
+            </div>
+            </tal:block>
         </div>
         
+        <div class="clear"></div>
         
 	</metal:content>
 
