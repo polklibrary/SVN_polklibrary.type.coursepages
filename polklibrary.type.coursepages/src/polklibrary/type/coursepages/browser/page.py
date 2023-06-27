@@ -18,7 +18,7 @@ class PageView(BrowserView):
         if hasattr(self.context, 'citation_ordering'):
             if self.context.citation_ordering:
                 for citation_id in self.context.citation_ordering:
-                    if hasattr(self.context, 'citation_id'):
+                    if hasattr(self.context, citation_id):
                         citation = getattr(self.context, citation_id, None)
                         if citation:
                             if citation.raw:

@@ -304,7 +304,7 @@ class CanvasView(BrowserView):
         if hasattr(self.course_page, 'citation_ordering'):
             if self.course_page.citation_ordering:
                 for citation_id in self.course_page.citation_ordering:
-                    if hasattr(self.course_page, 'citation_id'):
+                    if hasattr(self.course_page, citation_id):
                         citation = getattr(self.course_page, citation_id, None)
                         if citation:
                             if citation.raw:
