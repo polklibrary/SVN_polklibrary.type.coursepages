@@ -302,12 +302,13 @@ class CanvasView(BrowserView):
     def get_citations(self):
         output = u""
         if hasattr(self.course_page, 'citation_ordering'):
-            for citation_id in self.course_page.citation_ordering:
-                if hasattr(self.course_page, 'citation_id'):
-                    citation = getattr(self.course_page, citation_id, None)
-                    if citation:
-                        if citation.raw:
-                            output += citation.raw + "<br />"
+            if self.course_page.citation_ordering:
+                for citation_id in self.course_page.citation_ordering:
+                    if hasattr(self.course_page, 'citation_id'):
+                        citation = getattr(self.course_page, citation_id, None)
+                        if citation:
+                            if citation.raw:
+                                output += citation.raw + "<br />"
         return output
 
         
