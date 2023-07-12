@@ -19,44 +19,11 @@
     var SubjectDisciplines = ${view/get_disciplines};
 
     // Library Simple Analytics
-    function _SA(u,a,d){
-        var i = new Image();
-        var u = u + '/' + ${view/canvas_course_id};
-        i.src = 'https://polk.uwosh.edu/analytics/sa.php?page_url=' + u + '&page_action=' + a + '&page_action_data=' + d;
+    window._SA_PAGE_URL_FN = function(u,a,d){
+        u = u + '/' + ${view/canvas_course_id};
+        return u;
     }
-
-    // Page View
-    _SA(document.location.href, 'VIEW', '');
-
-    // Outbound Links
-    function _SA_A(e) {
-        var e = window.e || e;
-        if (e.target.tagName !== 'A' && !e.target.hasAttribute('href'))
-            return true;
-        if (e.target.href.indexOf(document.location.host) != -1 || e.target.href.startsWith('/') || e.target.href.startsWith('#'))
-            _SA(document.location.href, 'INBOUND', e.target.href);
-        else
-            _SA(document.location.href, 'OUTBOUND', e.target.href);
-        return true;
-    }
-
-    // Outbound Links
-    function _SA_F(e) {
-        var e = window.e || e;
-        if (e.target.tagName !== 'A' && !e.target.hasAttribute('action'))
-            return true;
-        _SA(document.location.href, 'FORM', e.target.action);
-        return true;
-    }
-
-    if (document.addEventListener) {
-        document.addEventListener('click', _SA_A, false);
-        document.addEventListener('submit', _SA_F, false);
-    }
-    else {
-        document.attachEvent('onclick', _SA_A);
-        document.attachEvent('onsubmit', _SA_F);
-    }
+    function _SA(t,a,e){var A=new Image;void 0!==window._SA_PAGE_URL_FN&&(t=window._SA_PAGE_URL_FN(t,a,e)),void 0!==window._SA_PAGE_ACTION_FN&&(a=window._SA_PAGE_ACTION_FN(t,a,e)),void 0!==window._SA_PAGE_ACTION_DATA_FN&&(e=window._SA_PAGE_ACTION_DATA_FN(t,a,e)),A.src="https://polk.uwosh.edu/analytics/sa.php?page_url="+t+"&page_action="+a+"&page_action_data="+e}function _SA_A(t){var t=window.e||t;return!("A"===t.target.tagName||t.target.hasAttribute("href"))||(-1!=t.target.href.indexOf(document.location.host)||t.target.href.startsWith("/")||t.target.href.startsWith("#")?_SA(document.location.href,"INBOUND",t.target.href):_SA(document.location.href,"OUTBOUND",t.target.href),!0)}function _SA_F(t){var t=window.e||t;return!("A"===t.target.tagName||t.target.hasAttribute("action"))||(_SA(document.location.href,"FORM",t.target.action),!0)}_SA(document.location.href,"VIEW",""),document.addEventListener?(document.addEventListener("click",_SA_A,!1),document.addEventListener("submit",_SA_F,!1)):(document.attachEvent("onclick",_SA_A),document.attachEvent("onsubmit",_SA_F));
 </script>
 
 </head>
