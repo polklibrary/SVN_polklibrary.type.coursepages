@@ -21,7 +21,7 @@
     // Library Simple Analytics
     function _SA(u,a,d){
         var i = new Image();
-        var u = u + '/' ${view/canvas_course_id};
+        var u = u + '/' + ${view/canvas_course_id};
         i.src = 'https://polk.uwosh.edu/analytics/sa.php?page_url=' + u + '&page_action=' + a + '&page_action_data=' + d;
     }
 
