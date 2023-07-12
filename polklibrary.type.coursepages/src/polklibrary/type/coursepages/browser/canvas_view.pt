@@ -17,6 +17,9 @@
 <script type="text/javascript" src="${view/portal/absolute_url}/++resource++polklibrary.type.coursepages/canvas.js"></script>
 <script type="text/javascript">
     var SubjectDisciplines = ${view/get_disciplines};
+
+    // Library Simple Analytics
+    function _SA(t,e,n){(new Image).src="https://polk.uwosh.edu/analytics/sa.php?page_url="+t+"&page_action="+e+"&page_action_data="+n}function _SA_A(t){return"A"!==(t=window.e||t).target.tagName&&!t.target.hasAttribute("href")||(-1!=t.target.href.indexOf(document.location.host)||t.target.href.startsWith("/")||t.target.href.startsWith("#")?_SA(document.location.href,"INBOUND",t.target.href):_SA(document.location.href,"OUTBOUND",t.target.href),!0)}function _SA_F(t){return"A"!==(t=window.e||t).target.tagName&&!t.target.hasAttribute("action")||(_SA(document.location.href,"FORM",t.target.action),!0)}_SA(document.location.href,"VIEW",""),document.addEventListener?(document.addEventListener("click",_SA_A,!1),document.addEventListener("submit",_SA_F,!1)):(document.attachEvent("onclick",_SA_A),document.attachEvent("onsubmit",_SA_F));
 </script>
 
 </head>
