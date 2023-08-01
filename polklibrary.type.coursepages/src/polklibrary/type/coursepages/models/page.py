@@ -100,7 +100,7 @@ class IPage(model.Schema):
     model.fieldset(
         'citations',
         label=u'Citations', 
-        fields=['citation_ordering', 'citation_apa', 'citation_mla', 'citation_chicago'],
+        fields=['citation_ordering', 'citation_apa', 'citation_mla', 'citation_chicago', 'citation_other'],
     )
         
 
