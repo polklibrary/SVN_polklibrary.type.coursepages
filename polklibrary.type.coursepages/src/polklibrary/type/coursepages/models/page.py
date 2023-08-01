@@ -17,6 +17,7 @@ citation_choices = SimpleVocabulary([
     SimpleTerm(value=u'citation_apa', title=u'APA'),
     SimpleTerm(value=u'citation_mla', title=u'MLA'),
     SimpleTerm(value=u'citation_chicago', title=u'Chicago'),
+    SimpleTerm(value=u'citation_other', title=u'Other'),
 ])
 
 @provider(IContextAwareDefaultFactory)
@@ -48,6 +49,16 @@ def default_chicago_factory(context):
     if context.portal_type == 'polklibrary.type.coursepages.models.librarian':
         if context.citation_chicago:
             return context.citation_chicago.output
+    return u"<p> </p>"
+
+@provider(IContextAwareDefaultFactory)
+def default_other_factory(context):
+    if context.portal_type == 'polklibrary.type.coursepages.models.page':
+        if context.aq_parent.citation_other:
+            return context.aq_parent.citation_other.output
+    if context.portal_type == 'polklibrary.type.coursepages.models.librarian':
+        if context.citation_other:
+            return context.citation_other.output
     return u"<p> </p>"
 
 
@@ -125,6 +136,15 @@ class IPage(model.Schema):
             defaultFactory=default_chicago_factory,
             missing_value=u"",
         )
+
+    citation_other = RichText(
+            title=u"Other Citation Guides",
+            description=u"Delete all content and save to have it show original snippet again.",
+            default_mime_type='text/structured',
+            required=False,
+            defaultFactory=default_other_factory,
+            missing_value=u"",
+        )
         
 alsoProvides(IPage, IFormFieldProvider) # required for defaultFactory context.
         
@@ -158,6 +178,15 @@ class EditForm(DefaultEditForm):
         if chicago == None or chicago == u"<p> </p>" or chicago == u"<p></p>" or chicago == u"":
             if self.context.aq_parent.citation_chicago:
                 self.context.citation_chicago = RichTextValue(self.context.aq_parent.citation_chicago.output, 'text/plain', 'text/html')
+            
+        other = u""
+        if self.context.citation_other:
+            other = self.context.citation_other.output
+        if other == None or other == u"<p> </p>" or other == u"<p></p>" or other == u"":
+            if self.context.aq_parent.citation_other:
+                self.context.citation_other = RichTextValue(self.context.aq_parent.citation_other.output, 'text/plain', 'text/html')
+            
+            
             
             
             

@@ -31,7 +31,7 @@ class ILibrarian(model.Schema):
     model.fieldset(
         'citations',
         label=u'Citations', 
-        fields=['citation_mla', 'citation_apa', 'citation_chicago'],
+        fields=['citation_mla', 'citation_apa', 'citation_chicago', 'citation_other'],
     )
     
     citation_apa = RichText(
@@ -57,6 +57,15 @@ class ILibrarian(model.Schema):
             required=False,
             default=u"<p> </p>",
         )
+
+    citation_other = RichText(
+            title=u"Other Citation Guides",
+            description=u"This citation can be imported as a 'reusable snippet' in your course pages.",
+            default_mime_type='text/structured',
+            required=False,
+            default=u"<p> </p>",
+        )
+        
         
     model.fieldset(
         'config',
